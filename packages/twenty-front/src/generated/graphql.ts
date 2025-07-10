@@ -1773,6 +1773,7 @@ export type Query = {
   versionInfo: VersionInfo;
   webhook?: Maybe<Webhook>;
   webhooks: Array<Webhook>;
+  workspaces: Array<Workspace>;
 };
 
 
@@ -2485,6 +2486,7 @@ export type User = {
   firstName: Scalars['String'];
   id: Scalars['UUID'];
   isEmailVerified: Scalars['Boolean'];
+  isSuperAdmin: Scalars['Boolean'];
   lastName: Scalars['String'];
   locale: Scalars['String'];
   onboardingStatus?: Maybe<OnboardingStatus>;

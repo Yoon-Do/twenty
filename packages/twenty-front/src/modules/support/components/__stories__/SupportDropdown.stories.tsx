@@ -32,7 +32,7 @@ const meta: Meta<typeof SupportDropdown> = {
 
       setCurrentWorkspace(mockCurrentWorkspace);
       setCurrentWorkspaceMember(mockedWorkspaceMemberData);
-      setCurrentUser(mockedUserData);
+      setCurrentUser({ ...mockedUserData, isSuperAdmin: false });
       setSupportChat({
         supportDriver: SupportDriver.FRONT,
         supportFrontChatId: '1234',

@@ -1,6 +1,3 @@
----
-alwaysApply: true
----
 ## Project Overview
 
 Twenty is an open-source CRM platform built with modern web technologies. It's a monorepo using NX workspace with TypeScript, React, and NestJS.

@@ -33,7 +33,11 @@ const renderHooks = (
     },
   );
   act(() => {
-    result.current.setCurrentUser({ ...mockedUserData, onboardingStatus });
+    result.current.setCurrentUser({
+      ...mockedUserData,
+      onboardingStatus,
+      isSuperAdmin: false,
+    });
     result.current.setCurrentWorkspace({
       ...mockCurrentWorkspace,
       currentBillingSubscription: withCurrentBillingSubscription

@@ -23,7 +23,7 @@ export const ObjectMetadataItemsDecorator: Decorator = (Story) => {
 
   useEffect(() => {
     setCurrentWorkspaceMember(mockWorkspaceMembers[0]);
-    setCurrentUser(mockedUserData);
+    setCurrentUser({ ...mockedUserData, isSuperAdmin: false });
     setCurrentUserWorkspace(mockedUserData.currentUserWorkspace);
     loadMockedObjectMetadataItems();
   }, [

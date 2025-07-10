@@ -59,7 +59,9 @@ const useSettingsNavigationItems = (): SettingsNavigationSection[] => {
   const isBillingEnabled = billing?.isBillingEnabled ?? false;
   const currentUser = useRecoilValue(currentUserState);
   const isAdminEnabled =
-    (currentUser?.canImpersonate || currentUser?.canAccessFullAdminPanel) ??
+    (currentUser?.canImpersonate ||
+      currentUser?.canAccessFullAdminPanel ||
+      currentUser?.isSuperAdmin) ??
     false;
   const labPublicFeatureFlags = useRecoilValue(labPublicFeatureFlagsState);
 
@@ -185,6 +187,23 @@ const useSettingsNavigationItems = (): SettingsNavigationSection[] => {
           path: SettingsPath.AdminPanel,
           Icon: IconServer,
           isHidden: !isAdminEnabled,
+          matchSubPages: false,
+          subItems: currentUser?.isSuperAdmin
+            ? [
+                {
+                  label: t`Workspaces`,
+                  path: SettingsPath.AdminPanelWorkspaces,
+                  Icon: IconUsers,
+                  indentationLevel: 2,
+                },
+                {
+                  label: t`Users`,
+                  path: SettingsPath.AdminPanelUsers,
+                  Icon: IconUserCircle,
+                  indentationLevel: 2,
+                },
+              ]
+            : undefined,
         },
         {
           label: t`Lab`,

@@ -42,6 +42,8 @@ export enum SettingsPath {
   AdminPanelHealthStatus = 'admin-panel#health-status',
   AdminPanelIndicatorHealthStatus = 'admin-panel/health-status/:indicatorId',
   AdminPanelConfigVariableDetails = 'admin-panel/config-variables/:variableName',
+  AdminPanelWorkspaces = 'admin-panel/workspaces',
+  AdminPanelUsers = 'admin-panel/users',
   Lab = 'lab',
   Roles = 'roles',
   RoleCreate = 'roles/create',

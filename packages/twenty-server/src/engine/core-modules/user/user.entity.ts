@@ -82,6 +82,10 @@ export class User {
   canAccessFullAdminPanel: boolean;
 
   @Field()
+  @Column({ default: false })
+  isSuperAdmin: boolean;
+
+  @Field()
   @CreateDateColumn({ type: 'timestamptz' })
   createdAt: Date;
 

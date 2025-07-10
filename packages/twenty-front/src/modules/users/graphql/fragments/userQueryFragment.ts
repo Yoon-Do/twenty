@@ -22,6 +22,7 @@ export const USER_QUERY_FRAGMENT = gql`
     email
     canAccessFullAdminPanel
     canImpersonate
+    isSuperAdmin
     supportUserHash
     onboardingStatus
     workspaceMember {

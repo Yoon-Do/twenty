@@ -2,6 +2,8 @@ import { Field, ObjectType, registerEnumType } from '@nestjs/graphql';
 
 import { IDField } from '@ptc-org/nestjs-query-graphql';
 import { WorkspaceActivationStatus } from 'twenty-shared/workspace';
+
+export { WorkspaceActivationStatus };
 import {
   Check,
   Column,

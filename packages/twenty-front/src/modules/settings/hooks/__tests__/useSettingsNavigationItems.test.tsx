@@ -22,6 +22,7 @@ const mockCurrentUser = {
   supportUserHash: null,
   canAccessFullAdminPanel: false,
   canImpersonate: false,
+  isSuperAdmin: false,
   onboardingStatus: OnboardingStatus.COMPLETED,
   userVars: {},
   firstName: 'fake-first-name',

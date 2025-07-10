@@ -313,6 +313,18 @@ const SettingsAdminConfigVariableDetails = lazy(() =>
   })),
 );
 
+const SettingsAdminWorkspaces = lazy(() =>
+  import('~/pages/settings/admin/SettingsAdminWorkspaces').then((module) => ({
+    default: module.SettingsAdminWorkspaces,
+  })),
+);
+
+const SettingsAdminUsers = lazy(() =>
+  import('~/pages/settings/admin/SettingsAdminUsers').then((module) => ({
+    default: module.SettingsAdminUsers,
+  })),
+);
+
 const SettingsLab = lazy(() =>
   import('~/pages/settings/lab/SettingsLab').then((module) => ({
     default: module.SettingsLab,
@@ -557,6 +569,14 @@ export const SettingsRoutes = ({
           <Route
             path={SettingsPath.AdminPanelConfigVariableDetails}
             element={<SettingsAdminConfigVariableDetails />}
+          />
+          <Route
+            path={SettingsPath.AdminPanelWorkspaces}
+            element={<SettingsAdminWorkspaces />}
+          />
+          <Route
+            path={SettingsPath.AdminPanelUsers}
+            element={<SettingsAdminUsers />}
           />
         </>
       )}

@@ -68,7 +68,7 @@ const renderHooks = ({
         }
 
         if (withCurrentUser) {
-          setCurrentUser(mockedUserData);
+          setCurrentUser({ ...mockedUserData, isSuperAdmin: false });
           setCurrentUserWorkspace(mockedUserData.currentUserWorkspace);
         }
       }, [
