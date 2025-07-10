@@ -79,7 +79,7 @@ export type AccessTokenJwtPayload = CommonPropertiesJwtPayload & {
   workspaceId: string;
   userId: string;
   workspaceMemberId?: string;
-  userWorkspaceId: string;
+  userWorkspaceId?: string; // Make optional to support super admin access
   authProvider?: AuthProviderEnum;
 };
 

@@ -6,8 +6,10 @@ This guide explains how to set up super admin accounts in Twenty CRM to access t
 
 The super admin feature allows designated users to:
 - View all workspaces in the system
-- Access workspace management functionality  
-- Monitor system-wide activities
+- Create, manage, and delete workspaces
+- Activate/deactivate workspaces
+- Manage all users in the system
+- Access comprehensive workspace and user management interfaces
 
 ## Implementation Status
 
@@ -16,14 +18,36 @@ The super admin feature allows designated users to:
 - Created database migration for `isSuperAdmin` column
 - Implemented `SuperAdminGuard` to protect admin endpoints
 - Created `AdminModule` with `AdminResolver` and `AdminService`
-- Added GraphQL `workspaces` query for super admins
+- **Workspace Management**: Full CRUD operations for workspaces
+  - Create, read, update, delete workspaces
+  - Activate/deactivate workspace functionality
+  - Workspace search and filtering
+- **User Management**: Comprehensive user administration
+  - Enable/disable user accounts
+  - View user details and workspace memberships
+  - Super admin promotion/demotion
+- **GraphQL API**: Complete admin endpoints with proper authorization
+- **Super Admin Workspace Access**: Allow super admins to access any workspace
+  - Modified JWT authentication to bypass userWorkspace validation
+  - Updated access token generation to work without workspace membership
+  - Enhanced authentication service to skip workspace invitation checks
+  - Fixed user resolver to handle super admins without userWorkspace records
 
 ✅ **Frontend Implementation (Complete)**
-- Created admin workspaces list page (`AdminWorkspacesList`)
-- Added routing for `/admin/workspaces` page
-- Updated navigation to show "Workspaces" sub-item for super admins
-- Updated GraphQL fragments and types to include `isSuperAdmin`
-- Updated admin access logic to include super admin users
+- **Admin Workspaces Interface**: Modern card-based workspace management
+  - View all workspaces with status indicators
+  - Create new workspaces with form validation
+  - Activate/deactivate workspaces with real-time updates
+  - Delete workspaces with confirmation dialogs
+- **Admin Users Interface**: Comprehensive user management
+  - View all users with role and status badges
+  - Enable/disable user accounts
+  - Current user highlighting and role indicators
+- **Navigation & Routing**: Updated admin panel with workspace/user sections
+- **UI/UX**: Consistent design following Twenty's design system
+  - Standard button components and hover states
+  - Modal dialogs with proper structure
+  - Loading states and error handling
 
 ## Prerequisites
 
@@ -57,8 +81,11 @@ FROM core.user
 WHERE "isSuperAdmin" = true;
 ```
 
-2. **Test the GraphQL endpoint** (after logging in as the super admin user):
+2. **Test the GraphQL endpoints** (after logging in as the super admin user):
+
+**Workspace Management:**
 ```graphql
+# Get all workspaces
 query GetWorkspaces {
   workspaces {
     id
@@ -66,6 +93,34 @@ query GetWorkspaces {
     subdomain
     createdAt
     activationStatus
+    allowImpersonation
+  }
+}
+
+# Create a new workspace
+mutation CreateWorkspace($data: CreateWorkspaceInput!) {
+  createWorkspace(data: $data) {
+    id
+    displayName
+    subdomain
+    activationStatus
+  }
+}
+```
+
+**User Management:**
+```graphql
+# Get all users
+query GetUsers {
+  users {
+    id
+    firstName
+    lastName
+    email
+    disabled
+    isSuperAdmin
+    canAccessFullAdminPanel
+    canImpersonate
   }
 }
 ```
@@ -79,27 +134,60 @@ npm start
 
 2. **Login** with the super admin user account
 
-3. **Navigate to Settings** → **Admin Panel** → **Workspaces**
+3. **Navigate to Settings** → **Admin Panel**
 
-4. **Verify** that you can see:
-   - A list of all workspaces in the system
-   - Workspace details like name, subdomain, creation date, and status
-   - The "Workspaces" sub-menu item under Admin Panel (only visible to super admins)
+4. **Test Workspace Management**:
+   - Go to **Admin Panel** → **Workspaces**
+   - Verify you can see all workspaces with status badges
+   - Test creating a new workspace using the "Create Workspace" button
+   - Test activating/deactivating workspaces
+   - Test deleting workspaces (with confirmation dialog)
+
+5. **Test User Management**:
+   - Go to **Admin Panel** → **Users** 
+   - Verify you can see all users with role and status indicators
+   - Test enabling/disabling user accounts
+   - Verify current user is highlighted with "This is you" indicator
+
+6. **Verify Navigation**:
+   - The "Users" and "Workspaces" sub-menu items should be visible under Admin Panel
+   - These sections are only visible to super admin users
 
 ## Architecture Details
 
 ### Backend Components
 
+**Core Infrastructure:**
 - **User Entity**: `packages/twenty-server/src/engine/core-modules/user/user.entity.ts`
+- **Workspace Entity**: `packages/twenty-server/src/engine/core-modules/workspace/workspace.entity.ts`
 - **Migration**: `packages/twenty-server/src/database/typeorm/core/migrations/common/1752140524000-addIsSuperAdminToUser.ts`
 - **Guard**: `packages/twenty-server/src/engine/guards/super-admin.guard.ts`
-- **Admin Module**: `packages/twenty-server/src/engine/core-modules/admin/`
+
+**Admin Module:**
+- **AdminService**: `packages/twenty-server/src/engine/core-modules/admin/admin.service.ts`
+  - Workspace CRUD operations
+  - User management functions
+  - Search and filtering
+- **AdminResolver**: `packages/twenty-server/src/engine/core-modules/admin/admin.resolver.ts`
+  - GraphQL mutations and queries
+  - Input validation and type definitions
 
 ### Frontend Components
 
-- **Admin Workspaces List**: `packages/twenty-front/src/modules/admin/components/AdminWorkspacesList.tsx`
-- **Admin Page**: `packages/twenty-front/src/pages/settings/admin/SettingsAdminWorkspaces.tsx`  
-- **GraphQL Query**: `packages/twenty-front/src/modules/admin/graphql/queries/getWorkspaces.ts`
+**Workspace Management:**
+- **AdminWorkspacesList**: `packages/twenty-front/src/modules/admin/components/AdminWorkspacesList.tsx`
+- **CreateWorkspaceModal**: `packages/twenty-front/src/modules/admin/components/CreateWorkspaceModal.tsx`
+- **Workspace Mutations**: `packages/twenty-front/src/modules/admin/graphql/mutations/workspaceManagement.ts`
+- **Workspace Queries**: `packages/twenty-front/src/modules/admin/graphql/queries/getWorkspaces.ts`
+
+**User Management:**
+- **AdminUsersList**: `packages/twenty-front/src/modules/admin/components/AdminUsersList.tsx`
+- **User Mutations**: `packages/twenty-front/src/modules/admin/graphql/mutations/userManagement.ts`
+- **User Queries**: `packages/twenty-front/src/modules/admin/graphql/queries/getUsers.ts`
+
+**Pages & Navigation:**
+- **Admin Workspaces Page**: `packages/twenty-front/src/pages/settings/admin/SettingsAdminWorkspaces.tsx`
+- **Admin Users Page**: `packages/twenty-front/src/pages/settings/admin/SettingsAdminUsers.tsx`
 - **Navigation Updates**: `packages/twenty-front/src/modules/settings/hooks/useSettingsNavigationItems.tsx`
 
 ### Database Schema
@@ -118,22 +206,65 @@ ADD COLUMN "isSuperAdmin" boolean DEFAULT false;
 - Consider implementing additional logging for super admin actions
 - The super admin flag is separate from `canAccessFullAdminPanel` and `canImpersonate` flags
 
+## Available Features
+
+### Workspace Management
+- **View Workspaces**: See all workspaces with status indicators (Active, Inactive, Pending Creation)
+- **Create Workspaces**: Create new workspaces with subdomain validation
+- **Activate/Deactivate**: Toggle workspace activation status
+- **Delete Workspaces**: Remove workspaces with confirmation dialogs
+- **Workspace Details**: View creation dates, settings, and subdomain information
+
+### User Management  
+- **View Users**: See all users with role badges (Super Admin, Admin, Impersonator, User)
+- **User Status**: View active/disabled status with visual indicators
+- **Enable/Disable**: Toggle user account status
+- **Current User**: Special highlighting for the logged-in admin
+- **User Details**: View email, join dates, workspace memberships
+
+### Security Features
+- **Role-based Access**: Only super admins can access admin panels
+- **Action Confirmations**: Destructive actions require confirmation
+- **Real-time Updates**: UI updates immediately after actions
+- **Error Handling**: Graceful handling of failed operations
+
 ## Troubleshooting
 
 ### Common Issues
 
-1. **"Workspaces" menu not visible**: 
+1. **Admin menus not visible**: 
    - Verify the user has `isSuperAdmin = true` in the database
-   - Clear browser cache and refresh
+   - Clear browser cache and refresh the page
    - Check the browser console for any JavaScript errors
+   - Ensure you're navigating to Settings → Admin Panel
 
 2. **GraphQL permission errors**:
    - Ensure the `SuperAdminGuard` is properly applied to the resolver
    - Verify that the user's session includes the updated `isSuperAdmin` field
+   - Try logging out and logging back in to refresh the session
 
-3. **Database migration issues**:
+3. **"Current user workspace not found" error for super admin**:
+   - This was a previous issue that has been fixed in the latest implementation
+   - Super admins can now access any workspace without being a member
+   - The `UserResolver.currentUser` now handles super admins without userWorkspace records
+   - If you still see this error, ensure you're using the latest code and restart the server
+
+4. **Super admin cannot access specific workspace**:
+   - Verify the user has `isSuperAdmin = true` in the database
+   - Check that the JWT authentication includes the super admin flag
+   - Ensure the workspace exists and is accessible
+   - Try logging out and logging back in to refresh the authentication token
+   - Super admins can access any workspace by navigating directly to its URL
+
+5. **Workspace creation fails**:
+   - Check subdomain validation (3-30 characters, lowercase, alphanumeric + hyphens)
+   - Ensure subdomain is unique across the system
+   - Verify database connectivity and permissions
+
+6. **Database migration issues**:
    - Run migrations manually: `npx nx run twenty-server:database:migrate`
    - Check that the `isSuperAdmin` column exists in the `core.user` table
+   - Verify WorkspaceActivationStatus enum is properly exported
 
 ### Development Commands
 

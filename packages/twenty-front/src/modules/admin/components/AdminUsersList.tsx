@@ -1,6 +1,6 @@
 import {
-    DISABLE_USER,
-    ENABLE_USER,
+  DISABLE_USER,
+  ENABLE_USER,
 } from '@/admin/graphql/mutations/userManagement';
 import { GET_USERS } from '@/admin/graphql/queries/getUsers';
 import { currentUserState } from '@/auth/states/currentUserState';
@@ -9,12 +9,12 @@ import styled from '@emotion/styled';
 import { useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import {
-    Avatar,
-    H2Title,
-    IconCalendar,
-    IconMail,
-    IconUserCircle,
-    IconUsers
+  Avatar,
+  H2Title,
+  IconCalendar,
+  IconMail,
+  IconUserCircle,
+  IconUsers,
 } from 'twenty-ui/display';
 import { Card, CardContent, Section } from 'twenty-ui/layout';
 import { User } from '~/generated/graphql';

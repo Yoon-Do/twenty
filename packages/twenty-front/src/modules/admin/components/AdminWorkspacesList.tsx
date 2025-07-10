@@ -17,6 +17,7 @@ import {
   IconPlus,
   IconSettings,
 } from 'twenty-ui/display';
+import { Button } from 'twenty-ui/input';
 import { Section } from 'twenty-ui/layout';
 import { Workspace, WorkspaceActivationStatus } from '~/generated/graphql';
 import { formatToHumanReadableDate } from '~/utils/date-utils';
@@ -184,31 +185,6 @@ const StyledHeader = styled.div`
   margin-bottom: ${({ theme }) => theme.spacing(4)};
 `;
 
-const StyledCreateButton = styled.button`
-  background: ${({ theme }) => theme.color.blue};
-  border: 1px solid ${({ theme }) => theme.color.blue};
-  border-radius: ${({ theme }) => theme.border.radius.sm};
-  color: white;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: ${({ theme }) => theme.spacing(1)};
-  font-size: ${({ theme }) => theme.font.size.sm};
-  font-weight: ${({ theme }) => theme.font.weight.medium};
-  padding: ${({ theme }) => theme.spacing(2)} ${({ theme }) => theme.spacing(3)};
-  transition: all 0.2s ease;
-
-  &:hover {
-    background: ${({ theme }) => theme.color.blue80};
-    border-color: ${({ theme }) => theme.color.blue80};
-  }
-
-  &:disabled {
-    cursor: not-allowed;
-    opacity: 0.5;
-  }
-`;
-
 export const AdminWorkspacesList = () => {
   const [loadingAction, setLoadingAction] = useState<string | null>(null);
   const { openModal } = useModal();
@@ -326,10 +302,13 @@ export const AdminWorkspacesList = () => {
           title="Workspaces"
           description={`${workspaces.length} workspace${workspaces.length !== 1 ? 's' : ''} in the system`}
         />
-        <StyledCreateButton onClick={() => openModal('create-workspace-modal')}>
-          <IconPlus size={16} />
-          Create Workspace
-        </StyledCreateButton>
+        <Button
+          title="Create Workspace"
+          Icon={IconPlus}
+          variant="primary"
+          accent="blue"
+          onClick={() => openModal('create-workspace-modal')}
+        />
       </StyledHeader>
 
       {workspaces.length === 0 ? (

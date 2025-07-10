@@ -8,15 +8,15 @@ import { isWorkspaceActiveOrSuspended } from 'twenty-shared/workspace';
 import { Repository } from 'typeorm';
 
 import {
-  AuthException,
-  AuthExceptionCode,
+    AuthException,
+    AuthExceptionCode,
 } from 'src/engine/core-modules/auth/auth.exception';
 import { AuthToken } from 'src/engine/core-modules/auth/dto/token.entity';
 import { JwtAuthStrategy } from 'src/engine/core-modules/auth/strategies/jwt.auth.strategy';
 import {
-  AccessTokenJwtPayload,
-  AuthContext,
-  JwtTokenTypeEnum,
+    AccessTokenJwtPayload,
+    AuthContext,
+    JwtTokenTypeEnum,
 } from 'src/engine/core-modules/auth/types/auth-context.type';
 import { JwtWrapperService } from 'src/engine/core-modules/jwt/services/jwt-wrapper.service';
 import { TwentyConfigService } from 'src/engine/core-modules/twenty-config/twenty-config.service';
@@ -66,6 +66,7 @@ export class AccessTokenService {
     );
 
     let tokenWorkspaceMemberId: string | undefined;
+    let tokenUserWorkspaceId: string | undefined;
 
     const workspace = await this.workspaceRepository.findOne({
       where: { id: workspaceId },
@@ -73,43 +74,81 @@ export class AccessTokenService {
 
     workspaceValidator.assertIsDefinedOrThrow(workspace);
 
-    if (isWorkspaceActiveOrSuspended(workspace)) {
-      const workspaceMemberRepository =
-        await this.twentyORMGlobalManager.getRepositoryForWorkspace<WorkspaceMemberWorkspaceEntity>(
-          workspaceId,
-          'workspaceMember',
-        );
+    // Super admin can access any workspace without being a member
+    if (user.isSuperAdmin) {
+      // For super admin, we still try to get workspace member ID if they are a member
+      // but don't require it
+      if (isWorkspaceActiveOrSuspended(workspace)) {
+        const workspaceMemberRepository =
+          await this.twentyORMGlobalManager.getRepositoryForWorkspace<WorkspaceMemberWorkspaceEntity>(
+            workspaceId,
+            'workspaceMember',
+          );
 
-      const workspaceMember = await workspaceMemberRepository.findOne({
+        const workspaceMember = await workspaceMemberRepository.findOne({
+          where: {
+            userId: user.id,
+          },
+        });
+
+        if (workspaceMember) {
+          tokenWorkspaceMemberId = workspaceMember.id;
+        }
+      }
+
+      // Try to get userWorkspace if exists, but don't require it for super admin
+      const userWorkspace = await this.userWorkspaceRepository.findOne({
         where: {
           userId: user.id,
+          workspaceId,
         },
       });
 
-      if (!workspaceMember) {
-        throw new AuthException(
-          'User is not a member of the workspace',
-          AuthExceptionCode.FORBIDDEN_EXCEPTION,
-        );
+      if (userWorkspace) {
+        tokenUserWorkspaceId = userWorkspace.id;
+      }
+    } else {
+      // For regular users, require workspace membership
+      if (isWorkspaceActiveOrSuspended(workspace)) {
+        const workspaceMemberRepository =
+          await this.twentyORMGlobalManager.getRepositoryForWorkspace<WorkspaceMemberWorkspaceEntity>(
+            workspaceId,
+            'workspaceMember',
+          );
+
+        const workspaceMember = await workspaceMemberRepository.findOne({
+          where: {
+            userId: user.id,
+          },
+        });
+
+        if (!workspaceMember) {
+          throw new AuthException(
+            'User is not a member of the workspace',
+            AuthExceptionCode.FORBIDDEN_EXCEPTION,
+          );
+        }
+
+        tokenWorkspaceMemberId = workspaceMember.id;
       }
 
-      tokenWorkspaceMemberId = workspaceMember.id;
-    }
-    const userWorkspace = await this.userWorkspaceRepository.findOne({
-      where: {
-        userId: user.id,
-        workspaceId,
-      },
-    });
+      const userWorkspace = await this.userWorkspaceRepository.findOne({
+        where: {
+          userId: user.id,
+          workspaceId,
+        },
+      });
 
-    userWorkspaceValidator.assertIsDefinedOrThrow(userWorkspace);
+      userWorkspaceValidator.assertIsDefinedOrThrow(userWorkspace);
+      tokenUserWorkspaceId = userWorkspace.id;
+    }
 
     const jwtPayload: AccessTokenJwtPayload = {
       sub: user.id,
       userId: user.id,
       workspaceId,
       workspaceMemberId: tokenWorkspaceMemberId,
-      userWorkspaceId: userWorkspace.id,
+      userWorkspaceId: tokenUserWorkspaceId, // Optional for super admin
       type: JwtTokenTypeEnum.ACCESS,
       authProvider,
     };

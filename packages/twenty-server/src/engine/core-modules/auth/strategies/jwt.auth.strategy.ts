@@ -8,16 +8,16 @@ import { Repository } from 'typeorm';
 
 import { ApiKey } from 'src/engine/core-modules/api-key/api-key.entity';
 import {
-  AuthException,
-  AuthExceptionCode,
+    AuthException,
+    AuthExceptionCode,
 } from 'src/engine/core-modules/auth/auth.exception';
 import {
-  AccessTokenJwtPayload,
-  ApiKeyTokenJwtPayload,
-  AuthContext,
-  FileTokenJwtPayload,
-  JwtPayload,
-  WorkspaceAgnosticTokenJwtPayload,
+    AccessTokenJwtPayload,
+    ApiKeyTokenJwtPayload,
+    AuthContext,
+    FileTokenJwtPayload,
+    JwtPayload,
+    WorkspaceAgnosticTokenJwtPayload,
 } from 'src/engine/core-modules/auth/types/auth-context.type';
 import { JwtWrapperService } from 'src/engine/core-modules/jwt/services/jwt-wrapper.service';
 import { UserWorkspace } from 'src/engine/core-modules/user-workspace/user-workspace.entity';
@@ -132,6 +132,36 @@ export class JwtAuthStrategy extends PassportStrategy(Strategy, 'jwt') {
       where: { id: userId },
     });
 
+    if (!user) {
+      throw new AuthException(
+        'User not found',
+        AuthExceptionCode.USER_NOT_FOUND,
+      );
+    }
+
+    // Super admin can access any workspace without being a member
+    if (user.isSuperAdmin) {
+      // Try to get userWorkspace if userWorkspaceId is provided
+      let userWorkspace: UserWorkspace | undefined;
+      if (payload.userWorkspaceId) {
+        userWorkspace = (await this.userWorkspaceRepository.findOne({
+          where: {
+            id: payload.userWorkspaceId,
+          },
+        })) || undefined;
+      }
+
+      return {
+        user,
+        workspace,
+        authProvider: payload.authProvider,
+        userWorkspace,
+        userWorkspaceId: payload.userWorkspaceId,
+        workspaceMemberId: payload.workspaceMemberId,
+      };
+    }
+
+    // For regular users, check userWorkspace requirement
     if (!payload.userWorkspaceId) {
       throw new AuthException(
         'UserWorkspace not found',

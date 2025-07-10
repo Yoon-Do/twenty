@@ -16,17 +16,17 @@ import { Repository } from 'typeorm';
 import { NodeEnvironment } from 'src/engine/core-modules/twenty-config/interfaces/node-environment.interface';
 
 import {
-  AppToken,
-  AppTokenType,
+    AppToken,
+    AppTokenType,
 } from 'src/engine/core-modules/app-token/app-token.entity';
 import {
-  AuthException,
-  AuthExceptionCode,
+    AuthException,
+    AuthExceptionCode,
 } from 'src/engine/core-modules/auth/auth.exception';
 import {
-  PASSWORD_REGEX,
-  compareHash,
-  hashPassword,
+    PASSWORD_REGEX,
+    compareHash,
+    hashPassword,
 } from 'src/engine/core-modules/auth/auth.util';
 import { AuthorizeApp } from 'src/engine/core-modules/auth/dto/authorize-app.entity';
 import { AuthorizeAppInput } from 'src/engine/core-modules/auth/dto/authorize-app.input';
@@ -45,10 +45,10 @@ import { RefreshTokenService } from 'src/engine/core-modules/auth/token/services
 import { WorkspaceAgnosticTokenService } from 'src/engine/core-modules/auth/token/services/workspace-agnostic-token.service';
 import { JwtTokenTypeEnum } from 'src/engine/core-modules/auth/types/auth-context.type';
 import {
-  AuthProviderWithPasswordType,
-  ExistingUserOrNewUser,
-  SignInUpBaseParams,
-  SignInUpNewUserPayload,
+    AuthProviderWithPasswordType,
+    ExistingUserOrNewUser,
+    SignInUpBaseParams,
+    SignInUpNewUserPayload,
 } from 'src/engine/core-modules/auth/types/signInUp.type';
 import { WorkspaceSubdomainCustomDomainAndIsCustomDomainEnabledType } from 'src/engine/core-modules/domain-manager/domain-manager.type';
 import { DomainManagerService } from 'src/engine/core-modules/domain-manager/services/domain-manager.service';
@@ -93,6 +93,11 @@ export class AuthService {
     workspace: Workspace,
     user: User,
   ) {
+    // Super admin can access any workspace without being a member
+    if (user.isSuperAdmin) {
+      return;
+    }
+
     if (
       await this.userWorkspaceService.checkUserWorkspaceExists(
         user.id,
@@ -627,6 +632,11 @@ export class AuthService {
       userData.type === 'newUser'
         ? userData.newUserPayload.email
         : userData.existingUser.email;
+
+    // Check if user is super admin - super admin can access any workspace
+    if (isAnExistingUser && userData.existingUser.isSuperAdmin) {
+      return; // Super admin bypasses all workspace access checks
+    }
 
     if (
       workspace?.approvedAccessDomains.some(
