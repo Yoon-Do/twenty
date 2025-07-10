@@ -1,3 +1,4 @@
+import { currentUserState } from '@/auth/states/currentUserState';
 import { currentUserWorkspaceState } from '@/auth/states/currentUserWorkspaceState';
 import { useRecoilValue } from 'recoil';
 import { PermissionsOnAllObjectRecords } from 'twenty-shared/constants';
@@ -5,6 +6,12 @@ import { isDefined } from 'twenty-shared/utils';
 
 export const useHasObjectReadOnlyPermission = () => {
   const currentUserWorkspace = useRecoilValue(currentUserWorkspaceState);
+  const currentUser = useRecoilValue(currentUserState);
+
+  // Super admin never has read-only permission
+  if (currentUser?.isSuperAdmin) {
+    return false;
+  }
 
   if (!isDefined(currentUserWorkspace?.objectRecordsPermissions)) {
     return false;

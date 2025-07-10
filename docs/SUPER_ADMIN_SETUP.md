@@ -282,15 +282,63 @@ npm start
 ps aux | grep -i twenty
 ```
 
+## API Reference
+
+### Workspace Management Endpoints
+
+```graphql
+# Queries
+workspaces: [Workspace!]!
+workspace(workspaceId: String!): Workspace
+searchWorkspaces(searchTerm: String!): [Workspace!]!
+
+# Mutations  
+createWorkspace(data: CreateWorkspaceInput!): Workspace!
+updateWorkspace(workspaceId: String!, data: UpdateWorkspaceInput!): Workspace!
+activateWorkspace(workspaceId: String!): Workspace!
+deactivateWorkspace(workspaceId: String!): Workspace!
+deleteWorkspace(workspaceId: String!): Workspace!
+```
+
+### User Management Endpoints
+
+```graphql
+# Queries
+users: [User!]!
+user(userId: String!): User
+searchUsers(searchTerm: String!): [User!]!
+
+# Mutations
+disableUser(userId: String!): User!
+enableUser(userId: String!): User!
+promoteToSuperAdmin(userId: String!): User!
+revokeAdminAccess(userId: String!): User!
+```
+
 ## Future Enhancements
 
 Potential future improvements for the super admin feature:
 
-- Advanced workspace filtering and search
-- Bulk workspace management operations
-- Workspace analytics and metrics
+### Workspace Management
+- Advanced workspace filtering and search functionality
+- Bulk workspace operations (batch activate/deactivate)
+- Workspace analytics and usage metrics
+- Workspace templates for standardized setups
+- Workspace backup and restore capabilities
+
+### User Management
+- Advanced user filtering and search
+- Bulk user operations (batch enable/disable)
+- User role management interface
+- User activity monitoring and audit logs
+- Password reset and account management tools
+
+### System Administration
 - System-wide configuration management
 - Enhanced audit logging for super admin actions
+- Email notification system for admin actions
+- API rate limiting and monitoring
+- System health and performance dashboards
 
 ---
 

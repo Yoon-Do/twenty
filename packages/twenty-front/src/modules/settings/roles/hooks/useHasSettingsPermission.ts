@@ -1,3 +1,4 @@
+import { currentUserState } from '@/auth/states/currentUserState';
 import { currentUserWorkspaceState } from '@/auth/states/currentUserWorkspaceState';
 import { currentWorkspaceState } from '@/auth/states/currentWorkspaceState';
 import { useRecoilValue } from 'recoil';
@@ -9,8 +10,14 @@ export const useHasSettingsPermission = (
 ) => {
   const currentWorkspace = useRecoilValue(currentWorkspaceState);
   const currentUserWorkspace = useRecoilValue(currentUserWorkspaceState);
+  const currentUser = useRecoilValue(currentUserState);
 
   if (!settingsPermission) {
+    return true;
+  }
+
+  // Super admin has all settings permissions
+  if (currentUser?.isSuperAdmin) {
     return true;
   }
 
