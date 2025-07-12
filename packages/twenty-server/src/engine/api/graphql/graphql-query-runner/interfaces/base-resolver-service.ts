@@ -205,6 +205,7 @@ export abstract class GraphqlQueryBaseResolverService<
           setting: permissionRequired,
           workspaceId: workspace.id,
           isExecutedByApiKey: isDefined(authContext.apiKey),
+          isSuperAdmin: authContext.user?.canAccessFullAdminPanel === true,
         });
 
       if (!userHasPermission) {

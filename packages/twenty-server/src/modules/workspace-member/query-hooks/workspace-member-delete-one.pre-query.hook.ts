@@ -48,6 +48,7 @@ export class WorkspaceMemberDeleteOnePreQueryHook
         targettedWorkspaceMemberId,
         workspaceId: workspace.id,
         apiKey: authContext.apiKey,
+        isSuperAdmin: authContext.user?.canAccessFullAdminPanel === true,
       },
     );
 

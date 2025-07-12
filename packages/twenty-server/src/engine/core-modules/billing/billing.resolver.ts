@@ -94,6 +94,7 @@ export class BillingResolver {
       userWorkspaceId,
       isExecutedByApiKey: isDefined(apiKey),
       workspaceActivationStatus: workspace.activationStatus,
+      isSuperAdmin: user.canAccessFullAdminPanel,
     });
 
     const checkoutSessionParams: BillingPortalCheckoutSessionParameters = {
@@ -178,11 +179,13 @@ export class BillingResolver {
     userWorkspaceId,
     isExecutedByApiKey,
     workspaceActivationStatus,
+    isSuperAdmin,
   }: {
     workspaceId: string;
     userWorkspaceId: string;
     isExecutedByApiKey: boolean;
     workspaceActivationStatus: WorkspaceActivationStatus;
+    isSuperAdmin: boolean;
   }) {
     if (
       (await this.billingService.isSubscriptionIncompleteOnboardingStatus(
@@ -201,6 +204,7 @@ export class BillingResolver {
         workspaceId,
         setting: SettingPermissionType.WORKSPACE,
         isExecutedByApiKey,
+        isSuperAdmin,
       });
 
     if (!userHasPermission) {

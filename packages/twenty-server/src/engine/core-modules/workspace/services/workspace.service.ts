@@ -146,10 +146,12 @@ export class WorkspaceService extends TypeOrmQueryService<Workspace> {
     payload,
     userWorkspaceId,
     apiKey,
+    isSuperAdmin,
   }: {
     payload: Partial<Workspace> & { id: string };
     userWorkspaceId?: string;
     apiKey?: string;
+    isSuperAdmin: boolean;
   }) {
     const workspace = await this.workspaceRepository.findOneBy({
       id: payload.id,
@@ -162,6 +164,7 @@ export class WorkspaceService extends TypeOrmQueryService<Workspace> {
       userWorkspaceId,
       workspaceId: workspace.id,
       apiKey,
+      isSuperAdmin,
     });
 
     await this.validateWorkspacePermissions({
@@ -170,6 +173,7 @@ export class WorkspaceService extends TypeOrmQueryService<Workspace> {
       workspaceId: workspace.id,
       apiKey,
       workspaceActivationStatus: workspace.activationStatus,
+      isSuperAdmin,
     });
 
     if (payload.subdomain && workspace.subdomain !== payload.subdomain) {
@@ -438,11 +442,13 @@ export class WorkspaceService extends TypeOrmQueryService<Workspace> {
     userWorkspaceId,
     workspaceId,
     apiKey,
+    isSuperAdmin,
   }: {
     payload: Partial<Workspace>;
     userWorkspaceId?: string;
     workspaceId: string;
     apiKey?: string;
+    isSuperAdmin: boolean;
   }) {
     if (
       'isGoogleAuthEnabled' in payload ||
@@ -460,6 +466,7 @@ export class WorkspaceService extends TypeOrmQueryService<Workspace> {
           setting: SettingPermissionType.SECURITY,
           workspaceId: workspaceId,
           isExecutedByApiKey: isDefined(apiKey),
+          isSuperAdmin,
         });
 
       if (!userHasPermission) {
@@ -477,12 +484,14 @@ export class WorkspaceService extends TypeOrmQueryService<Workspace> {
     workspaceId,
     apiKey,
     workspaceActivationStatus,
+    isSuperAdmin,
   }: {
     payload: Partial<Workspace>;
     userWorkspaceId?: string;
     workspaceId: string;
     apiKey?: string;
     workspaceActivationStatus: WorkspaceActivationStatus;
+    isSuperAdmin: boolean;
   }) {
     if (
       'displayName' in payload ||
@@ -506,6 +515,7 @@ export class WorkspaceService extends TypeOrmQueryService<Workspace> {
           workspaceId,
           setting: SettingPermissionType.WORKSPACE,
           isExecutedByApiKey: isDefined(apiKey),
+          isSuperAdmin,
         });
 
       if (!userHasPermission) {

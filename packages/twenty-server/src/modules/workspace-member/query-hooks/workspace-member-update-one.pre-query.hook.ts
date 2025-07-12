@@ -42,6 +42,7 @@ export class WorkspaceMemberUpdateOnePreQueryHook
         workspaceId: workspace.id,
         apiKey: authContext.apiKey,
         workspaceMemberId: authContext.workspaceMemberId,
+        isSuperAdmin: authContext.user?.canAccessFullAdminPanel === true,
       },
     );
 

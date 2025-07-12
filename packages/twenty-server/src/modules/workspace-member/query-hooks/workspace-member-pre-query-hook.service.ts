@@ -21,12 +21,14 @@ export class WorkspaceMemberPreQueryHookService {
     targettedWorkspaceMemberId,
     workspaceId,
     apiKey,
+    isSuperAdmin,
   }: {
     userWorkspaceId?: string;
     workspaceMemberId?: string;
     targettedWorkspaceMemberId?: string;
     workspaceId: string;
     apiKey?: ApiKey | null;
+    isSuperAdmin: boolean;
   }) {
     if (isDefined(apiKey)) {
       return;
@@ -52,6 +54,7 @@ export class WorkspaceMemberPreQueryHookService {
         workspaceId,
         setting: SettingPermissionType.WORKSPACE_MEMBERS,
         isExecutedByApiKey: isDefined(apiKey),
+        isSuperAdmin,
       })
     ) {
       return;

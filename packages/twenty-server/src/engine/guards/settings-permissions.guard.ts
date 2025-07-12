@@ -29,6 +29,8 @@ export const SettingsPermissionsGuard = (
       const ctx = GqlExecutionContext.create(context);
       const workspaceId = ctx.getContext().req.workspace.id;
       const userWorkspaceId = ctx.getContext().req.userWorkspaceId;
+      const isSuperAdmin =
+        ctx.getContext().req.user?.canAccessFullAdminPanel === true;
       const workspaceActivationStatus =
         ctx.getContext().req.workspace.activationStatus;
 
@@ -47,6 +49,7 @@ export const SettingsPermissionsGuard = (
           setting: requiredPermission,
           workspaceId,
           isExecutedByApiKey: isDefined(ctx.getContext().req.apiKey),
+          isSuperAdmin,
         });
 
       if (hasPermission === true) {

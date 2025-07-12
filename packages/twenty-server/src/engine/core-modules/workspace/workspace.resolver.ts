@@ -124,6 +124,7 @@ export class WorkspaceResolver {
   async updateWorkspace(
     @Args('data') data: UpdateWorkspaceInput,
     @AuthWorkspace() workspace: Workspace,
+    @AuthUser() user: User,
     @AuthUserWorkspaceId() userWorkspaceId: string,
     @AuthApiKey() apiKey?: string,
   ) {
@@ -135,6 +136,7 @@ export class WorkspaceResolver {
         },
         userWorkspaceId,
         apiKey,
+        isSuperAdmin: user.canAccessFullAdminPanel,
       });
     } catch (error) {
       workspaceGraphqlApiExceptionHandler(error);
