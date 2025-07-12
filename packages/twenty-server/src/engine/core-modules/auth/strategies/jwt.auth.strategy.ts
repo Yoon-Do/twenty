@@ -17,6 +17,7 @@ import {
   AuthContext,
   FileTokenJwtPayload,
   JwtPayload,
+  SuperAdminTokenJwtPayload,
   WorkspaceAgnosticTokenJwtPayload,
 } from 'src/engine/core-modules/auth/types/auth-context.type';
 import { JwtWrapperService } from 'src/engine/core-modules/jwt/services/jwt-wrapper.service';
@@ -47,6 +48,7 @@ export class JwtAuthStrategy extends PassportStrategy(Strategy, 'jwt') {
           | FileTokenJwtPayload
           | AccessTokenJwtPayload
           | WorkspaceAgnosticTokenJwtPayload
+          | SuperAdminTokenJwtPayload
         >(rawJwtToken);
 
         const appSecretBody =
@@ -166,6 +168,41 @@ export class JwtAuthStrategy extends PassportStrategy(Strategy, 'jwt') {
     };
   }
 
+  private async validateSuperAdminToken(
+    payload: SuperAdminTokenJwtPayload,
+  ): Promise<AuthContext> {
+    const user = await this.userRepository.findOne({
+      where: {
+        id: payload.userId,
+        canAccessFullAdminPanel: true, // Verify super admin status
+      },
+    });
+
+    userValidator.assertIsDefinedOrThrow(
+      user,
+      new AuthException(
+        'Super admin user not found',
+        AuthExceptionCode.USER_NOT_FOUND,
+      ),
+    );
+
+    // Optional: Load workspace context if specified
+    let workspace = null;
+
+    if (payload.workspaceId) {
+      workspace = await this.workspaceRepository.findOneBy({
+        id: payload.workspaceId,
+      });
+    }
+
+    return {
+      user,
+      workspace,
+      authProvider: payload.authProvider,
+      isSuperAdmin: true, // Critical flag
+    };
+  }
+
   private async validateWorkspaceAgnosticToken(
     payload: WorkspaceAgnosticTokenJwtPayload,
   ) {
@@ -191,6 +228,10 @@ export class JwtAuthStrategy extends PassportStrategy(Strategy, 'jwt') {
     // Support legacy api keys
     if (payload.type === 'API_KEY' || this.isLegacyApiKeyPayload(payload)) {
       return await this.validateAPIKey(payload);
+    }
+
+    if (payload.type === 'SUPER_ADMIN') {
+      return await this.validateSuperAdminToken(payload);
     }
 
     if (payload.type === 'WORKSPACE_AGNOSTIC') {

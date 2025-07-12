@@ -12,6 +12,7 @@ export type AuthContext = {
   userWorkspaceId?: string;
   userWorkspace?: UserWorkspace;
   authProvider?: AuthProviderEnum;
+  isSuperAdmin?: boolean;
 };
 
 export enum JwtTokenTypeEnum {
@@ -23,6 +24,7 @@ export enum JwtTokenTypeEnum {
   API_KEY = 'API_KEY',
   POSTGRES_PROXY = 'POSTGRES_PROXY',
   REMOTE_SERVER = 'REMOTE_SERVER',
+  SUPER_ADMIN = 'SUPER_ADMIN',
 }
 
 type CommonPropertiesJwtPayload = {
@@ -91,6 +93,13 @@ export type RemoteServerTokenJwtPayload = CommonPropertiesJwtPayload & {
   type: JwtTokenTypeEnum.REMOTE_SERVER;
 };
 
+export type SuperAdminTokenJwtPayload = CommonPropertiesJwtPayload & {
+  type: JwtTokenTypeEnum.SUPER_ADMIN;
+  userId: string;
+  workspaceId?: string; // Optional - for context only
+  authProvider?: AuthProviderEnum;
+};
+
 export type JwtPayload =
   | AccessTokenJwtPayload
   | ApiKeyTokenJwtPayload
@@ -100,4 +109,5 @@ export type JwtPayload =
   | RefreshTokenJwtPayload
   | FileTokenJwtPayload
   | PostgresProxyTokenJwtPayload
-  | RemoteServerTokenJwtPayload;
+  | RemoteServerTokenJwtPayload
+  | SuperAdminTokenJwtPayload;

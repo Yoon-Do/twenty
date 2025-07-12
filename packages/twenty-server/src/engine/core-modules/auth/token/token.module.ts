@@ -10,6 +10,7 @@ import { AccessTokenService } from 'src/engine/core-modules/auth/token/services/
 import { LoginTokenService } from 'src/engine/core-modules/auth/token/services/login-token.service';
 import { RefreshTokenService } from 'src/engine/core-modules/auth/token/services/refresh-token.service';
 import { RenewTokenService } from 'src/engine/core-modules/auth/token/services/renew-token.service';
+import { SuperAdminTokenService } from 'src/engine/core-modules/auth/token/services/super-admin-token.service';
 import { WorkspaceAgnosticTokenService } from 'src/engine/core-modules/auth/token/services/workspace-agnostic-token.service';
 import { JwtModule } from 'src/engine/core-modules/jwt/jwt.module';
 import { WorkspaceSSOModule } from 'src/engine/core-modules/sso/sso.module';
@@ -35,6 +36,7 @@ import { DataSourceModule } from 'src/engine/metadata-modules/data-source/data-s
     AccessTokenService,
     LoginTokenService,
     RefreshTokenService,
+    SuperAdminTokenService,
     WorkspaceAgnosticTokenService,
   ],
   exports: [
@@ -42,6 +44,7 @@ import { DataSourceModule } from 'src/engine/metadata-modules/data-source/data-s
     AccessTokenService,
     LoginTokenService,
     RefreshTokenService,
+    SuperAdminTokenService,
     WorkspaceAgnosticTokenService,
   ],
 })
