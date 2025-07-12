@@ -3,6 +3,7 @@ import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 
 import { SuperAdminTokenService } from 'src/engine/core-modules/auth/token/services/super-admin-token.service';
 import { SuperAdminAuditService } from 'src/engine/core-modules/audit/super-admin-audit.service';
+import { SuperAdminTokenDto } from 'src/engine/core-modules/admin-panel/dtos/super-admin-token.dto';
 import { UserAuthGuard } from 'src/engine/guards/user-auth.guard';
 import { WorkspaceAuthGuard } from 'src/engine/guards/workspace-auth.guard';
 import { AdminPanelGuard } from 'src/engine/guards/admin-panel-guard';

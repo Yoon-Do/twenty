@@ -19,7 +19,6 @@ import { RedisClientModule } from 'src/engine/core-modules/redis-client/redis-cl
 import { User } from 'src/engine/core-modules/user/user.entity';
 import { UserWorkspace } from 'src/engine/core-modules/user-workspace/user-workspace.entity';
 import { Workspace } from 'src/engine/core-modules/workspace/workspace.entity';
-import { SuperAdminPermissionsService } from 'src/engine/metadata-modules/permissions/super-admin-permissions.service';
 import { PermissionsModule } from 'src/engine/metadata-modules/permissions/permissions.module';
 
 @Module({
@@ -38,18 +37,16 @@ import { PermissionsModule } from 'src/engine/metadata-modules/permissions/permi
     AdminPanelResolver,
     AdminPanelService,
     AdminPanelHealthService,
-    CrossWorkspaceAdminResolver,
+    // CrossWorkspaceAdminResolver, // Temporarily commented
     CrossWorkspaceAdminService,
     EnhancedImpersonateService,
-    SuperAdminManagementResolver,
+    // SuperAdminManagementResolver, // Temporarily commented
     SuperAdminAuditService,
-    SuperAdminPermissionsService,
   ],
   exports: [
     AdminPanelService,
     CrossWorkspaceAdminService,
     SuperAdminAuditService,
-    SuperAdminPermissionsService,
   ],
 })
 export class AdminPanelModule {}
