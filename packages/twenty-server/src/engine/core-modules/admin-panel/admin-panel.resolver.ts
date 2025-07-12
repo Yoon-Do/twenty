@@ -26,7 +26,7 @@ import { MessageQueue } from 'src/engine/core-modules/message-queue/message-queu
 import { ConfigVariables } from 'src/engine/core-modules/twenty-config/config-variables';
 import { ConfigVariableGraphqlApiExceptionFilter } from 'src/engine/core-modules/twenty-config/filters/config-variable-graphql-api-exception.filter';
 import { TwentyConfigService } from 'src/engine/core-modules/twenty-config/twenty-config.service';
-import { EnhancedEnhancedAdminPanelGuard } from 'src/engine/guards/enhanced-admin-panel.guard';
+import { EnhancedAdminPanelGuard } from 'src/engine/guards/enhanced-admin-panel.guard';
 import { ImpersonateGuard } from 'src/engine/guards/impersonate-guard';
 import { UserAuthGuard } from 'src/engine/guards/user-auth.guard';
 import { WorkspaceAuthGuard } from 'src/engine/guards/workspace-auth.guard';
@@ -87,13 +87,13 @@ export class AdminPanelResolver {
     }
   }
 
-  @UseGuards(WorkspaceAuthGuard, UserAuthGuard, EnhancedEnhancedAdminPanelGuard)
+  @UseGuards(WorkspaceAuthGuard, UserAuthGuard, EnhancedAdminPanelGuard)
   @Query(() => ConfigVariablesOutput)
   async getConfigVariablesGrouped(): Promise<ConfigVariablesOutput> {
     return this.adminService.getConfigVariablesGrouped();
   }
 
-  @UseGuards(WorkspaceAuthGuard, UserAuthGuard, EnhancedEnhancedAdminPanelGuard)
+  @UseGuards(WorkspaceAuthGuard, UserAuthGuard, EnhancedAdminPanelGuard)
   @Query(() => SystemHealth)
   async getSystemHealthStatus(): Promise<SystemHealth> {
     return this.adminPanelHealthService.getSystemHealthStatus();

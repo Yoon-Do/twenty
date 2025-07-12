@@ -25,7 +25,7 @@ export class SuperAdminTokenService {
     };
 
     const secret = this.jwtWrapperService.generateAppSecret(
-      'SUPER_ADMIN',
+      JwtTokenTypeEnum.SUPER_ADMIN,
       userId,
     );
 

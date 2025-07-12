@@ -72,7 +72,7 @@ export class SuperAdminManagementResolver {
       throw new Error('User not authorized to view audit logs');
     }
 
-    const logs = await this.superAdminAuditService.getAuditLogs({ limit });
+    const logs = await this.superAdminAuditService.getAuditLogs({ _limit: limit });
 
     return JSON.stringify(logs, null, 2);
   }

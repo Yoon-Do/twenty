@@ -58,7 +58,7 @@ export class JwtAuthStrategy extends PassportStrategy(Strategy, 'jwt') {
 
         const secret = jwtWrapperService.generateAppSecret(
           decodedToken.type,
-          appSecretBody,
+          appSecretBody || '',
         );
 
         done(null, secret);
@@ -197,7 +197,7 @@ export class JwtAuthStrategy extends PassportStrategy(Strategy, 'jwt') {
 
     return {
       user,
-      workspace,
+      workspace: workspace || undefined,
       authProvider: payload.authProvider,
       isSuperAdmin: true, // Critical flag
     };

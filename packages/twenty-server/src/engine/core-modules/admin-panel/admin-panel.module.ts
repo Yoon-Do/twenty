@@ -10,7 +10,7 @@ import { CrossWorkspaceAdminResolver } from 'src/engine/core-modules/admin-panel
 import { EnhancedImpersonateService } from 'src/engine/core-modules/admin-panel/enhanced-impersonate.service';
 import { SuperAdminManagementResolver } from 'src/engine/core-modules/admin-panel/super-admin-management.resolver';
 import { AuthModule } from 'src/engine/core-modules/auth/auth.module';
-import { SuperAdminTokenService } from 'src/engine/core-modules/auth/token/services/super-admin-token.service';
+import { TokenModule } from 'src/engine/core-modules/auth/token/token.module';
 import { SuperAdminAuditService } from 'src/engine/core-modules/audit/super-admin-audit.service';
 import { DomainManagerModule } from 'src/engine/core-modules/domain-manager/domain-manager.module';
 import { FeatureFlagModule } from 'src/engine/core-modules/feature-flag/feature-flag.module';
@@ -26,6 +26,7 @@ import { PermissionsModule } from 'src/engine/metadata-modules/permissions/permi
   imports: [
     TypeOrmModule.forFeature([User, UserWorkspace, Workspace], 'core'),
     AuthModule,
+    TokenModule,
     DomainManagerModule,
     HealthModule,
     RedisClientModule,
@@ -41,14 +42,12 @@ import { PermissionsModule } from 'src/engine/metadata-modules/permissions/permi
     CrossWorkspaceAdminService,
     EnhancedImpersonateService,
     SuperAdminManagementResolver,
-    SuperAdminTokenService,
     SuperAdminAuditService,
     SuperAdminPermissionsService,
   ],
   exports: [
     AdminPanelService,
     CrossWorkspaceAdminService,
-    SuperAdminTokenService,
     SuperAdminAuditService,
     SuperAdminPermissionsService,
   ],
