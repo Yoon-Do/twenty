@@ -27,9 +27,9 @@ export const seedUsers = async (dataSource: DataSource, schemaName: string) => {
     .values([
       {
         id: USER_DATA_SEED_IDS.TIM,
-        firstName: 'Tim',
-        lastName: 'Apple',
-        email: 'tim@apple.dev',
+        firstName: 'Nam',
+        lastName: 'Do',
+        email: 'nam.do@salegon.com',
         passwordHash:
           '$2b$10$3LwXjJRtLsfx4hLuuXhxt.3mWgismTiZFCZSG3z9kDrSfsrBl0fT6', // tim@apple.dev
         canImpersonate: true,
@@ -38,9 +38,9 @@ export const seedUsers = async (dataSource: DataSource, schemaName: string) => {
       },
       {
         id: USER_DATA_SEED_IDS.JONY,
-        firstName: 'Jony',
-        lastName: 'Ive',
-        email: 'jony.ive@apple.dev',
+        firstName: 'Duc',
+        lastName: 'Pham',
+        email: 'duc.pham@salegon.com',
         passwordHash:
           '$2b$10$3LwXjJRtLsfx4hLuuXhxt.3mWgismTiZFCZSG3z9kDrSfsrBl0fT6', // tim@apple.dev
         canImpersonate: true,
@@ -49,9 +49,9 @@ export const seedUsers = async (dataSource: DataSource, schemaName: string) => {
       },
       {
         id: USER_DATA_SEED_IDS.PHIL,
-        firstName: 'Phil',
-        lastName: 'Schiler',
-        email: 'phil.schiler@apple.dev',
+        firstName: 'Lap',
+        lastName: 'Le',
+        email: 'lap.le@salegon.com',
         passwordHash:
           '$2b$10$3LwXjJRtLsfx4hLuuXhxt.3mWgismTiZFCZSG3z9kDrSfsrBl0fT6', // tim@apple.dev
         canImpersonate: true,
@@ -60,9 +60,9 @@ export const seedUsers = async (dataSource: DataSource, schemaName: string) => {
       },
       {
         id: USER_DATA_SEED_IDS.JANE,
-        firstName: 'Jane',
-        lastName: 'Austen',
-        email: 'jane.austen@apple.dev',
+        firstName: 'Thinh',
+        lastName: 'Nguyen',
+        email: 'thinh.nguyen@salegon.com',
         passwordHash:
           '$2b$10$3LwXjJRtLsfx4hLuuXhxt.3mWgismTiZFCZSG3z9kDrSfsrBl0fT6', // tim@apple.dev
         canImpersonate: true,

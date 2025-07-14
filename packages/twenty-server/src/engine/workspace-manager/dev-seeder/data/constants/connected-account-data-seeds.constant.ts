@@ -44,7 +44,7 @@ export const CONNECTED_ACCOUNT_DATA_SEEDS: ConnectedAccountDataSeed[] = [
     refreshToken: 'exampleRefreshToken',
     accessToken: 'exampleAccessToken',
     provider: 'google',
-    handle: 'tim@apple.dev',
+    handle: 'nam.do@salegon.com',
   },
   {
     id: CONNECTED_ACCOUNT_DATA_SEED_IDS.JONY,
@@ -56,7 +56,7 @@ export const CONNECTED_ACCOUNT_DATA_SEEDS: ConnectedAccountDataSeed[] = [
     refreshToken: 'exampleRefreshToken',
     accessToken: 'exampleAccessToken',
     provider: 'google',
-    handle: 'jony.ive@apple.dev',
+    handle: 'duc.pham@salegon.com',
   },
   {
     id: CONNECTED_ACCOUNT_DATA_SEED_IDS.PHIL,
@@ -68,6 +68,6 @@ export const CONNECTED_ACCOUNT_DATA_SEEDS: ConnectedAccountDataSeed[] = [
     refreshToken: 'exampleRefreshToken',
     accessToken: 'exampleAccessToken',
     provider: 'google',
-    handle: 'phil.schiler@apple.dev',
+    handle: 'lap.le@salegon.com',
   },
 ];

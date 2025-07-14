@@ -12,8 +12,8 @@ ORIGIN.hostname =
     : ORIGIN.hostname;
 
 const auth = {
-  email: 'tim@apple.dev',
-  password: 'tim@apple.dev',
+  email: 'nam.do@salegon.com',
+  password: 'nam.do@salegon.com',
 };
 
 describe('AuthResolve (integration)', () => {
