@@ -31,7 +31,7 @@ export const seedUsers = async (dataSource: DataSource, schemaName: string) => {
         lastName: 'Do',
         email: 'nam.do@salegon.com',
         passwordHash:
-          '$2b$10$3LwXjJRtLsfx4hLuuXhxt.3mWgismTiZFCZSG3z9kDrSfsrBl0fT6', // tim@apple.dev
+          '$2b$10$5q5AfRFGBQ6bwN.0eVYb2OByUOacQSlhubqRIJbdFd66fSsUofBB2', // salegon@####
         canImpersonate: true,
         canAccessFullAdminPanel: true,
         isEmailVerified: true,
@@ -42,7 +42,7 @@ export const seedUsers = async (dataSource: DataSource, schemaName: string) => {
         lastName: 'Pham',
         email: 'duc.pham@salegon.com',
         passwordHash:
-          '$2b$10$3LwXjJRtLsfx4hLuuXhxt.3mWgismTiZFCZSG3z9kDrSfsrBl0fT6', // tim@apple.dev
+          '$2b$10$5q5AfRFGBQ6bwN.0eVYb2OByUOacQSlhubqRIJbdFd66fSsUofBB2', // salegon@####
         canImpersonate: true,
         canAccessFullAdminPanel: true,
         isEmailVerified: true,
@@ -53,7 +53,7 @@ export const seedUsers = async (dataSource: DataSource, schemaName: string) => {
         lastName: 'Le',
         email: 'lap.le@salegon.com',
         passwordHash:
-          '$2b$10$3LwXjJRtLsfx4hLuuXhxt.3mWgismTiZFCZSG3z9kDrSfsrBl0fT6', // tim@apple.dev
+          '$2b$10$5q5AfRFGBQ6bwN.0eVYb2OByUOacQSlhubqRIJbdFd66fSsUofBB2', // salegon@####
         canImpersonate: true,
         canAccessFullAdminPanel: true,
         isEmailVerified: true,
@@ -64,7 +64,7 @@ export const seedUsers = async (dataSource: DataSource, schemaName: string) => {
         lastName: 'Nguyen',
         email: 'thinh.nguyen@salegon.com',
         passwordHash:
-          '$2b$10$3LwXjJRtLsfx4hLuuXhxt.3mWgismTiZFCZSG3z9kDrSfsrBl0fT6', // tim@apple.dev
+          '$2b$10$5q5AfRFGBQ6bwN.0eVYb2OByUOacQSlhubqRIJbdFd66fSsUofBB2', // salegon@####
         canImpersonate: true,
         canAccessFullAdminPanel: true,
         isEmailVerified: true,

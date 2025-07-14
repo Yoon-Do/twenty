@@ -57,7 +57,8 @@
     "navigation",
     "testing",
     "theme",
-    "utilities"
+    "utilities",
+    "workspace"
   ],
   "sideEffects": [
     "**/*.css"
@@ -118,6 +119,11 @@
       "types": "./dist/utilities/index.d.ts",
       "import": "./dist/utilities.mjs",
       "require": "./dist/utilities.cjs"
+    },
+    "./workspace": {
+      "types": "./dist/workspace/index.d.ts",
+      "import": "./dist/workspace.mjs",
+      "require": "./dist/workspace.cjs"
     }
   }
 }

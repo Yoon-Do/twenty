@@ -1,7 +1,6 @@
-**/**/.env
 .DS_Store
 /.idea
-**/**/node_modules/
+**/node_modules/**
 .cache
 
 # yarn is the recommended package manager across the project
@@ -31,6 +30,8 @@ storybook-static
 test-results/
 dump.rdb
 .tinyb
+#remove .env
+/.env
 
 .notes
 /data/

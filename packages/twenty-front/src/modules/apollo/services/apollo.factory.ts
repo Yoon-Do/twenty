@@ -1,13 +1,13 @@
 import {
-  ApolloClient,
-  ApolloClientOptions,
-  ApolloLink,
-  FetchResult,
-  fromPromise,
-  Observable,
-  Operation,
-  ServerError,
-  ServerParseError,
+    ApolloClient,
+    ApolloClientOptions,
+    ApolloLink,
+    FetchResult,
+    fromPromise,
+    Observable,
+    Operation,
+    ServerError,
+    ServerParseError,
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 import { onError } from '@apollo/client/link/error';
@@ -23,10 +23,10 @@ import { logDebug } from '~/utils/logDebug';
 
 import { i18n } from '@lingui/core';
 import {
-  DefinitionNode,
-  DirectiveNode,
-  GraphQLFormattedError,
-  SelectionNode,
+    DefinitionNode,
+    DirectiveNode,
+    GraphQLFormattedError,
+    SelectionNode,
 } from 'graphql';
 import isEmpty from 'lodash.isempty';
 import { getGenericOperationName, isDefined } from 'twenty-shared/utils';
@@ -88,14 +88,39 @@ export class ApolloFactory<TCacheShape> implements ApolloManager<TCacheShape> {
         uri: REST_API_BASE_URL,
       });
 
-      const authLink = setContext(async (_, { headers }) => {
+      const authLink = setContext(async (operation, { headers }) => {
         const tokenPair = getTokenPair();
 
-        if (isUndefinedOrNull(tokenPair)) {
+        // List of public operations that don't require authentication
+        const publicOperations = [
+          'GetPublicWorkspaceDataByDomain',
+          'CheckUserExists',
+          'GetAuthorizationUrlForSSO',
+          'CheckWorkspaceInviteHashIsValid',
+          'FindWorkspaceFromInviteHash',
+          'GetLoginTokenFromCredentials',
+          'SignIn',
+          'SignUp',
+          'SignUpInWorkspace',
+          'GetAuthTokensFromLoginToken',
+          'RenewToken',
+        ];
+
+        const operationName = operation?.operationName;
+        const isPublicOperation = operationName ? publicOperations.includes(operationName) : false;
+
+        // For public operations, don't send authorization header even if token exists
+        if (isPublicOperation || isUndefinedOrNull(tokenPair)) {
           return {
             headers: {
               ...headers,
               ...options.headers,
+              ...(this.currentWorkspaceMember?.locale
+                ? { 'x-locale': this.currentWorkspaceMember.locale }
+                : { 'x-locale': i18n.locale }),
+              ...(this.currentWorkspace?.metadataVersion && {
+                'X-Schema-Version': `${this.currentWorkspace.metadataVersion}`,
+              }),
             },
           };
         }

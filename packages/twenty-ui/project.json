@@ -35,7 +35,9 @@
         "{projectRoot}/theme/package.json",
         "{projectRoot}/theme/dist",
         "{projectRoot}/utilities/package.json",
-        "{projectRoot}/utilities/dist"
+        "{projectRoot}/utilities/dist",
+        "{projectRoot}/workspace/package.json",
+        "{projectRoot}/workspace/dist"
       ]
     },
     "generateBarrels": {
