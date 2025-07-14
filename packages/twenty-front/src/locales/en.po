@@ -6320,6 +6320,7 @@ msgstr "User is not logged in"
 
 #. js-lingui-id: Sxm8rQ
 #: src/modules/settings/roles/role-permissions/settings-permissions/components/SettingsRolePermissionsSettingsSection.tsx
+#: src/modules/settings/hooks/useSettingsNavigationItems.tsx
 msgid "Users"
 msgstr "Users"
 
@@ -6627,6 +6628,7 @@ msgstr "Workspace name"
 #~ msgstr "Workspace Name"
 
 #. js-lingui-id: pmt7u4
+#: src/modules/settings/hooks/useSettingsNavigationItems.tsx
 #: src/modules/settings/admin-panel/components/SettingsAdminGeneral.tsx
 msgid "Workspaces"
 msgstr "Workspaces"

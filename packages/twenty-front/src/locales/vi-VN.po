@@ -6325,6 +6325,7 @@ msgstr "Người dùng không đăng nhập"
 
 #. js-lingui-id: Sxm8rQ
 #: src/modules/settings/roles/role-permissions/settings-permissions/components/SettingsRolePermissionsSettingsSection.tsx
+#: src/modules/settings/hooks/useSettingsNavigationItems.tsx
 msgid "Users"
 msgstr "Users"
 
@@ -6632,6 +6633,7 @@ msgstr "Tên Workspace"
 #~ msgstr "Workspace Name"
 
 #. js-lingui-id: pmt7u4
+#: src/modules/settings/hooks/useSettingsNavigationItems.tsx
 #: src/modules/settings/admin-panel/components/SettingsAdminGeneral.tsx
 msgid "Workspaces"
 msgstr "Không gian làm việc"
