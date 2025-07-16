@@ -73,7 +73,7 @@ module.exports = {
   overrides: [
     {
       files: ['**/*.ts', '**/*.tsx'],
-      extends: ['plugin:@nx/typescript'],
+      extends: ['plugin:@nx/typescript'], 
       rules: {
         '@typescript-eslint/ban-ts-comment': 'error',
         '@typescript-eslint/consistent-type-imports': [
