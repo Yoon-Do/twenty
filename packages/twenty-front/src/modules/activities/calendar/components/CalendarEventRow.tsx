@@ -10,7 +10,11 @@ import { getCalendarEventStartDate } from '@/activities/calendar/utils/getCalend
 import { hasCalendarEventEnded } from '@/activities/calendar/utils/hasCalendarEventEnded';
 import { currentWorkspaceMemberState } from '@/auth/states/currentWorkspaceMemberState';
 import { useOpenCalendarEventInCommandMenu } from '@/command-menu/hooks/useOpenCalendarEventInCommandMenu';
-import { IconArrowRight } from 'twenty-ui/display';
+import { useOpenRecordInCommandMenu } from '@/command-menu/hooks/useOpenRecordInCommandMenu';
+import { useDeleteOneRecord } from '@/object-record/hooks/useDeleteOneRecord';
+import { CoreObjectNameSingular } from '@/object-metadata/types/CoreObjectNameSingular';
+import { IconArrowRight, IconEdit, IconTrash } from 'twenty-ui/display';
+import { LightIconButton } from 'twenty-ui/input';
 import {
   CalendarChannelVisibility,
   TimelineCalendarEvent,
@@ -21,6 +25,23 @@ type CalendarEventRowProps = {
   className?: string;
 };
 
+const StyledActionsContainer = styled.div`
+  display: flex;
+  gap: ${({ theme }) => theme.spacing(1)};
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+`;
+
+const StyledEventRowContainer = styled.div`
+  display: flex;
+  align-items: center;
+  width: 100%;
+
+  &:hover ${StyledActionsContainer} {
+    opacity: 1;
+  }
+`;
+
 const StyledContainer = styled.div<{ showTitle?: boolean }>`
   align-items: center;
   display: inline-flex;
@@ -28,6 +49,7 @@ const StyledContainer = styled.div<{ showTitle?: boolean }>`
   height: ${({ theme }) => theme.spacing(6)};
   position: relative;
   cursor: ${({ showTitle }) => (showTitle ? 'pointer' : 'not-allowed')};
+  flex: 1;
 `;
 
 const StyledAttendanceIndicator = styled.div<{ active?: boolean }>`
@@ -87,6 +109,10 @@ export const CalendarEventRow = ({
   const currentWorkspaceMember = useRecoilValue(currentWorkspaceMemberState);
   const { openCalendarEventInCommandMenu } =
     useOpenCalendarEventInCommandMenu();
+  const { openRecordInCommandMenu } = useOpenRecordInCommandMenu();
+  const { deleteOneRecord } = useDeleteOneRecord({
+    objectNameSingular: CoreObjectNameSingular.LocalCalendarEvent,
+  });
 
   const startsAt = getCalendarEventStartDate(calendarEvent);
   const endsAt = getCalendarEventEndDate(calendarEvent);
@@ -103,42 +129,78 @@ export const CalendarEventRow = ({
   const showTitle =
     calendarEvent.visibility === CalendarChannelVisibility.SHARE_EVERYTHING;
 
+  // 🎯 DIFFERENTIATE LOCAL VS EXTERNAL EVENTS
+  const isLocalEvent = (calendarEvent as any)._isLocalEvent === true;
+
+  const handleEdit = () => {
+    if (isLocalEvent) {
+      openRecordInCommandMenu({
+        recordId: calendarEvent.id,
+        objectNameSingular: CoreObjectNameSingular.LocalCalendarEvent,
+      });
+    }
+  };
+
+  const handleDelete = async () => {
+    if (isLocalEvent && confirm('Are you sure you want to delete this event?')) {
+      await deleteOneRecord(calendarEvent.id);
+    }
+  };
+
   return (
-    <StyledContainer
-      className={className}
-      showTitle={showTitle}
-      onClick={
-        showTitle
-          ? () => {
-              openCalendarEventInCommandMenu(calendarEvent.id);
-            }
-          : undefined
-      }
-    >
-      <StyledAttendanceIndicator active={isCurrentWorkspaceMemberAttending} />
-      <StyledLabels>
-        <StyledTime>
-          {startTimeLabel}
-          {endTimeLabel && (
-            <>
-              <IconArrowRight size={theme.icon.size.sm} />
-              {endTimeLabel}
-            </>
+    <StyledEventRowContainer className={className}>
+      {/* 🎯 EXISTING EVENT DISPLAY - ZERO CHANGES */}
+      <StyledContainer
+        showTitle={showTitle}
+        onClick={
+          showTitle && !isLocalEvent
+            ? () => openCalendarEventInCommandMenu(calendarEvent.id)
+            : isLocalEvent
+            ? handleEdit
+            : undefined
+        }
+      >
+        <StyledAttendanceIndicator active={isCurrentWorkspaceMemberAttending} />
+        <StyledLabels>
+          <StyledTime>
+            {startTimeLabel}
+            {endTimeLabel && (
+              <>
+                <IconArrowRight size={theme.icon.size.sm} />
+                {endTimeLabel}
+              </>
+            )}
+          </StyledTime>
+          {showTitle ? (
+            <StyledTitle active={!hasEnded} canceled={!!calendarEvent.isCanceled}>
+              {calendarEvent.title}
+            </StyledTitle>
+          ) : (
+            <CalendarEventNotSharedContent />
           )}
-        </StyledTime>
-        {showTitle ? (
-          <StyledTitle active={!hasEnded} canceled={!!calendarEvent.isCanceled}>
-            {calendarEvent.title}
-          </StyledTitle>
-        ) : (
-          <CalendarEventNotSharedContent />
+        </StyledLabels>
+        {!!calendarEvent.participants?.length && (
+          <CalendarEventParticipantsAvatarGroup
+            participants={calendarEvent.participants}
+          />
         )}
-      </StyledLabels>
-      {!!calendarEvent.participants?.length && (
-        <CalendarEventParticipantsAvatarGroup
-          participants={calendarEvent.participants}
-        />
+      </StyledContainer>
+
+      {/* 🎯 ACTIONS ONLY FOR LOCAL EVENTS */}
+      {isLocalEvent && (
+        <StyledActionsContainer>
+          <LightIconButton
+            Icon={IconEdit}
+            size="small"
+            onClick={handleEdit}
+          />
+          <LightIconButton
+            Icon={IconTrash}
+            size="small"
+            onClick={handleDelete}
+          />
+        </StyledActionsContainer>
       )}
-    </StyledContainer>
+    </StyledEventRowContainer>
   );
 };

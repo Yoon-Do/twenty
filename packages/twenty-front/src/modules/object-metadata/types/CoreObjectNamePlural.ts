@@ -6,6 +6,7 @@ export enum CoreObjectNamePlural {
   Blocklist = 'blocklists',
   CalendarChannel = 'calendarChannels',
   CalendarEvent = 'calendarEvents',
+  LocalCalendarEvent = 'localCalendarEvents',
   Comment = 'comments',
   Company = 'companies',
   ConnectedAccount = 'connectedAccounts',
