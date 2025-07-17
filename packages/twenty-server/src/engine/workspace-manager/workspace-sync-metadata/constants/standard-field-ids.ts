@@ -111,6 +111,19 @@ export const CALENDAR_EVENT_STANDARD_FIELD_IDS = {
   calendarEventParticipants: '20202020-e07e-4ccb-88f5-6f3d00458eec',
 };
 
+export const LOCAL_CALENDAR_EVENT_STANDARD_FIELD_IDS = {
+  title: '20202020-eef1-4fc6-8d9f-a36fd3c1e0b1',
+  description: '20202020-7d48-42b2-b3d2-1a9ecc98d079',
+  startsAt: '20202020-8aaf-4a32-8dd9-56cb9ed6c8b6',
+  endsAt: '20202020-2a4e-4e4e-9eca-6e8deb7d9d16',
+  location: '20202020-9aad-4ab7-bafd-0da677343b7a',
+  isFullDay: '20202020-a8c8-42c7-9e4a-3cb764560aac',
+  isCanceled: '20202020-8754-4182-8bea-fa9ef7d70b4b',
+  person: '20202020-1d85-4e37-9757-e219ffa2c755',
+  company: '20202020-bcdd-4ec5-b313-fc6dc7622fe7',
+  creator: '20202020-f3c1-4d95-8ba3-81d2ce60cf8b',
+};
+
 // TODO: check if this can be deleted
 export const COMMENT_STANDARD_FIELD_IDS = {
   body: '20202020-d5eb-49d2-b3e0-1ed04145ebb7',
@@ -559,6 +572,7 @@ export const STANDARD_OBJECT_FIELD_IDS = {
   calendarChannel: CALENDAR_CHANNEL_STANDARD_FIELD_IDS,
   calendarEventParticipant: CALENDAR_EVENT_PARTICIPANT_STANDARD_FIELD_IDS,
   calendarEvent: CALENDAR_EVENT_STANDARD_FIELD_IDS,
+  localCalendarEvent: LOCAL_CALENDAR_EVENT_STANDARD_FIELD_IDS,
   comment: COMMENT_STANDARD_FIELD_IDS,
   company: COMPANY_STANDARD_FIELD_IDS,
   connectedAccount: CONNECTED_ACCOUNT_STANDARD_FIELD_IDS,
