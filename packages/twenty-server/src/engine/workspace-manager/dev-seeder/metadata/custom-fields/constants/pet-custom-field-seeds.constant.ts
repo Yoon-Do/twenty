@@ -1,5 +1,7 @@
 import { FieldMetadataType } from 'twenty-shared/types';
 
+import { RelationType } from 'src/engine/metadata-modules/field-metadata/interfaces/relation-type.interface';
+
 import { FieldMetadataSeed } from 'src/engine/workspace-manager/dev-seeder/metadata/types/field-metadata-seed.type';
 
 export const PET_CUSTOM_FIELD_SEEDS: FieldMetadataSeed[] = [
@@ -103,5 +105,17 @@ export const PET_CUSTOM_FIELD_SEEDS: FieldMetadataSeed[] = [
     type: FieldMetadataType.RAW_JSON,
     label: 'Extra data',
     name: 'extraData',
+  },
+  {
+    type: FieldMetadataType.RELATION,
+    label: 'Owner',
+    name: 'owner',
+    relationCreationPayload: {
+      targetObjectMetadataId: '',
+      targetFieldLabel: 'Pets',
+      targetFieldIcon: 'IconCat',
+      type: RelationType.MANY_TO_ONE,
+    },
+    targetObjectNameSingular: 'person',
   },
 ];
