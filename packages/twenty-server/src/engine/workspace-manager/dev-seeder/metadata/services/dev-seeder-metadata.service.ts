@@ -10,6 +10,10 @@ import { SURVEY_RESULT_CUSTOM_FIELD_SEEDS } from 'src/engine/workspace-manager/d
 import { SURVEY_RESULT_CUSTOM_OBJECT_SEED } from 'src/engine/workspace-manager/dev-seeder/metadata/custom-objects/constants/survey-results-object-seed.constant';
 import { LEAD_CUSTOM_FIELD_SEEDS } from 'src/engine/workspace-manager/dev-seeder/metadata/custom-fields/constants/lead-custom-field-seeds.constant';
 import { LEAD_CUSTOM_OBJECT_SEED } from 'src/engine/workspace-manager/dev-seeder/metadata/custom-objects/constants/lead-custom-object-seed.constant';
+import { CAMPAIGN_CUSTOM_FIELD_SEEDS } from 'src/engine/workspace-manager/dev-seeder/metadata/custom-fields/constants/campaign-custom-field-seeds.constant';
+import { CAMPAIGN_CUSTOM_OBJECT_SEED } from 'src/engine/workspace-manager/dev-seeder/metadata/custom-objects/constants/campaign-custom-object-seed.constant';
+import { PROGRAM_CUSTOM_FIELD_SEEDS } from 'src/engine/workspace-manager/dev-seeder/metadata/custom-fields/constants/program-custom-field-seeds.constant';
+import { PROGRAM_CUSTOM_OBJECT_SEED } from 'src/engine/workspace-manager/dev-seeder/metadata/custom-objects/constants/program-custom-object-seed.constant';
 import { FieldMetadataSeed } from 'src/engine/workspace-manager/dev-seeder/metadata/types/field-metadata-seed.type';
 import { ObjectMetadataSeed } from 'src/engine/workspace-manager/dev-seeder/metadata/types/object-metadata-seed.type';
 import { CreateFieldInput } from 'src/engine/metadata-modules/field-metadata/dtos/create-field.input';
@@ -30,6 +34,14 @@ export class DevSeederMetadataService {
   > = {
     [SEED_YCOMBINATOR_WORKSPACE_ID]: {
       objects: [
+        {
+          seed: CAMPAIGN_CUSTOM_OBJECT_SEED,
+          fields: CAMPAIGN_CUSTOM_FIELD_SEEDS,
+        },
+        {
+          seed: PROGRAM_CUSTOM_OBJECT_SEED,
+          fields: PROGRAM_CUSTOM_FIELD_SEEDS,
+        },
         {
           seed: LEAD_CUSTOM_OBJECT_SEED,
           fields: LEAD_CUSTOM_FIELD_SEEDS,
