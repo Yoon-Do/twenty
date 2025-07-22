@@ -14,6 +14,12 @@ import { SURVEY_RESULT_CUSTOM_FIELD_SEEDS } from 'src/engine/workspace-manager/d
 import { PET_CUSTOM_OBJECT_SEED } from 'src/engine/workspace-manager/dev-seeder/metadata/custom-objects/constants/pet-custom-object-seed.constant';
 import { ROCKET_CUSTOM_OBJECT_SEED } from 'src/engine/workspace-manager/dev-seeder/metadata/custom-objects/constants/rocket-custom-object-seed.constant';
 import { SURVEY_RESULT_CUSTOM_OBJECT_SEED } from 'src/engine/workspace-manager/dev-seeder/metadata/custom-objects/constants/survey-results-object-seed.constant';
+import { DEAL_CUSTOM_FIELD_SEEDS } from 'src/engine/workspace-manager/dev-seeder/metadata/custom-fields/constants/deal-custom-field-seeds.constant';
+import { LEAD_CUSTOM_FIELD_SEEDS } from 'src/engine/workspace-manager/dev-seeder/metadata/custom-fields/constants/lead-custom-field-seeds.constant';
+import { STUDENT_CUSTOM_FIELD_SEEDS } from 'src/engine/workspace-manager/dev-seeder/metadata/custom-fields/constants/student-custom-field-seeds.constant';
+import { DEAL_CUSTOM_OBJECT_SEED } from 'src/engine/workspace-manager/dev-seeder/metadata/custom-objects/constants/deal-custom-object-seed.constant';
+import { LEAD_CUSTOM_OBJECT_SEED } from 'src/engine/workspace-manager/dev-seeder/metadata/custom-objects/constants/lead-custom-object-seed.constant';
+import { STUDENT_CUSTOM_OBJECT_SEED } from 'src/engine/workspace-manager/dev-seeder/metadata/custom-objects/constants/student-custom-object-seed.constant';
 import { FieldMetadataSeed } from 'src/engine/workspace-manager/dev-seeder/metadata/types/field-metadata-seed.type';
 import { ObjectMetadataSeed } from 'src/engine/workspace-manager/dev-seeder/metadata/types/object-metadata-seed.type';
 
@@ -38,6 +44,12 @@ export class DevSeederMetadataService {
         {
           seed: SURVEY_RESULT_CUSTOM_OBJECT_SEED,
           fields: SURVEY_RESULT_CUSTOM_FIELD_SEEDS,
+        },
+        { seed: LEAD_CUSTOM_OBJECT_SEED, fields: LEAD_CUSTOM_FIELD_SEEDS },
+        { seed: DEAL_CUSTOM_OBJECT_SEED, fields: DEAL_CUSTOM_FIELD_SEEDS },
+        {
+          seed: STUDENT_CUSTOM_OBJECT_SEED,
+          fields: STUDENT_CUSTOM_FIELD_SEEDS,
         },
       ],
       fields: [
