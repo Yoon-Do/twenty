@@ -1,6 +1,7 @@
 import { FieldMetadataType } from 'twenty-shared/types';
 
 import { RelationType } from 'src/engine/metadata-modules/field-metadata/interfaces/relation-type.interface';
+
 import { FieldMetadataSeed } from 'src/engine/workspace-manager/dev-seeder/metadata/types/field-metadata-seed.type';
 
 export const LEAD_CUSTOM_FIELD_SEEDS: FieldMetadataSeed[] = [

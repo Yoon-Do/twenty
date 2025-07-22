@@ -14,6 +14,10 @@ import { CAMPAIGN_CUSTOM_FIELD_SEEDS } from 'src/engine/workspace-manager/dev-se
 import { CAMPAIGN_CUSTOM_OBJECT_SEED } from 'src/engine/workspace-manager/dev-seeder/metadata/custom-objects/constants/campaign-custom-object-seed.constant';
 import { PROGRAM_CUSTOM_FIELD_SEEDS } from 'src/engine/workspace-manager/dev-seeder/metadata/custom-fields/constants/program-custom-field-seeds.constant';
 import { PROGRAM_CUSTOM_OBJECT_SEED } from 'src/engine/workspace-manager/dev-seeder/metadata/custom-objects/constants/program-custom-object-seed.constant';
+import { DEAL_CUSTOM_FIELD_SEEDS } from 'src/engine/workspace-manager/dev-seeder/metadata/custom-fields/constants/deal-custom-field-seeds.constant';
+import { DEAL_CUSTOM_OBJECT_SEED } from 'src/engine/workspace-manager/dev-seeder/metadata/custom-objects/constants/deal-custom-object-seed.constant';
+import { STUDENT_CUSTOM_FIELD_SEEDS } from 'src/engine/workspace-manager/dev-seeder/metadata/custom-fields/constants/student-custom-field-seeds.constant';
+import { STUDENT_CUSTOM_OBJECT_SEED } from 'src/engine/workspace-manager/dev-seeder/metadata/custom-objects/constants/student-custom-object-seed.constant';
 import { FieldMetadataSeed } from 'src/engine/workspace-manager/dev-seeder/metadata/types/field-metadata-seed.type';
 import { ObjectMetadataSeed } from 'src/engine/workspace-manager/dev-seeder/metadata/types/object-metadata-seed.type';
 import { CreateFieldInput } from 'src/engine/metadata-modules/field-metadata/dtos/create-field.input';
@@ -41,6 +45,14 @@ export class DevSeederMetadataService {
         {
           seed: PROGRAM_CUSTOM_OBJECT_SEED,
           fields: PROGRAM_CUSTOM_FIELD_SEEDS,
+        },
+        {
+          seed: DEAL_CUSTOM_OBJECT_SEED,
+          fields: DEAL_CUSTOM_FIELD_SEEDS,
+        },
+        {
+          seed: STUDENT_CUSTOM_OBJECT_SEED,
+          fields: STUDENT_CUSTOM_FIELD_SEEDS,
         },
         {
           seed: LEAD_CUSTOM_OBJECT_SEED,
