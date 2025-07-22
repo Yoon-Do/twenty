@@ -18,6 +18,34 @@ import { DEAL_CUSTOM_FIELD_SEEDS } from 'src/engine/workspace-manager/dev-seeder
 import { DEAL_CUSTOM_OBJECT_SEED } from 'src/engine/workspace-manager/dev-seeder/metadata/custom-objects/constants/deal-custom-object-seed.constant';
 import { STUDENT_CUSTOM_FIELD_SEEDS } from 'src/engine/workspace-manager/dev-seeder/metadata/custom-fields/constants/student-custom-field-seeds.constant';
 import { STUDENT_CUSTOM_OBJECT_SEED } from 'src/engine/workspace-manager/dev-seeder/metadata/custom-objects/constants/student-custom-object-seed.constant';
+import { ORDER_CUSTOM_OBJECT_SEED } from 'src/engine/workspace-manager/dev-seeder/metadata/custom-objects/constants/order-custom-object-seed.constant';
+import { ORDER_CUSTOM_FIELD_SEEDS } from 'src/engine/workspace-manager/dev-seeder/metadata/custom-fields/constants/order-custom-field-seeds.constant';
+import { CLASS_CUSTOM_OBJECT_SEED } from 'src/engine/workspace-manager/dev-seeder/metadata/custom-objects/constants/class-custom-object-seed.constant';
+import { CLASS_CUSTOM_FIELD_SEEDS } from 'src/engine/workspace-manager/dev-seeder/metadata/custom-fields/constants/class-custom-field-seeds.constant';
+import { APPOINTMENT_CUSTOM_OBJECT_SEED } from 'src/engine/workspace-manager/dev-seeder/metadata/custom-objects/constants/appointment-custom-object-seed.constant';
+import { APPOINTMENT_CUSTOM_FIELD_SEEDS } from 'src/engine/workspace-manager/dev-seeder/metadata/custom-fields/constants/appointment-custom-field-seeds.constant';
+import { ATTENDANCE_CUSTOM_OBJECT_SEED } from 'src/engine/workspace-manager/dev-seeder/metadata/custom-objects/constants/attendance-custom-object-seed.constant';
+import { ATTENDANCE_CUSTOM_FIELD_SEEDS } from 'src/engine/workspace-manager/dev-seeder/metadata/custom-fields/constants/attendance-custom-field-seeds.constant';
+import { CALL_CUSTOM_OBJECT_SEED } from 'src/engine/workspace-manager/dev-seeder/metadata/custom-objects/constants/call-custom-object-seed.constant';
+import { CALL_CUSTOM_FIELD_SEEDS } from 'src/engine/workspace-manager/dev-seeder/metadata/custom-fields/constants/call-custom-field-seeds.constant';
+import { ENROLLMENT_CUSTOM_OBJECT_SEED } from 'src/engine/workspace-manager/dev-seeder/metadata/custom-objects/constants/enrollment-custom-object-seed.constant';
+import { ENROLLMENT_CUSTOM_FIELD_SEEDS } from 'src/engine/workspace-manager/dev-seeder/metadata/custom-fields/constants/enrollment-custom-field-seeds.constant';
+import { NOTE_CUSTOM_OBJECT_SEED } from 'src/engine/workspace-manager/dev-seeder/metadata/custom-objects/constants/note-custom-object-seed.constant';
+import { NOTE_CUSTOM_FIELD_SEEDS } from 'src/engine/workspace-manager/dev-seeder/metadata/custom-fields/constants/note-custom-field-seeds.constant';
+import { PRODUCT_CUSTOM_OBJECT_SEED } from 'src/engine/workspace-manager/dev-seeder/metadata/custom-objects/constants/product-custom-object-seed.constant';
+import { PRODUCT_CUSTOM_FIELD_SEEDS } from 'src/engine/workspace-manager/dev-seeder/metadata/custom-fields/constants/product-custom-field-seeds.constant';
+import { ROOM_CUSTOM_OBJECT_SEED } from 'src/engine/workspace-manager/dev-seeder/metadata/custom-objects/constants/room-custom-object-seed.constant';
+import { ROOM_CUSTOM_FIELD_SEEDS } from 'src/engine/workspace-manager/dev-seeder/metadata/custom-fields/constants/room-custom-field-seeds.constant';
+import { SCORE_TEMPLATE_CUSTOM_OBJECT_SEED } from 'src/engine/workspace-manager/dev-seeder/metadata/custom-objects/constants/score-template-custom-object-seed.constant';
+import { SCORE_TEMPLATE_CUSTOM_FIELD_SEEDS } from 'src/engine/workspace-manager/dev-seeder/metadata/custom-fields/constants/score-template-custom-field-seeds.constant';
+import { TASK_CUSTOM_OBJECT_SEED } from 'src/engine/workspace-manager/dev-seeder/metadata/custom-objects/constants/task-custom-object-seed.constant';
+import { TASK_CUSTOM_FIELD_SEEDS } from 'src/engine/workspace-manager/dev-seeder/metadata/custom-fields/constants/task-custom-field-seeds.constant';
+import { TEACHER_CUSTOM_OBJECT_SEED } from 'src/engine/workspace-manager/dev-seeder/metadata/custom-objects/constants/teacher-custom-object-seed.constant';
+import { TEACHER_CUSTOM_FIELD_SEEDS } from 'src/engine/workspace-manager/dev-seeder/metadata/custom-fields/constants/teacher-custom-field-seeds.constant';
+import { INVENTORY_CUSTOM_OBJECT_SEED } from 'src/engine/workspace-manager/dev-seeder/metadata/custom-objects/constants/inventory-custom-object-seed.constant';
+import { INVENTORY_CUSTOM_FIELD_SEEDS } from 'src/engine/workspace-manager/dev-seeder/metadata/custom-fields/constants/inventory-custom-field-seeds.constant';
+import { CENTER_CUSTOM_OBJECT_SEED } from 'src/engine/workspace-manager/dev-seeder/metadata/custom-objects/constants/center-custom-object-seed.constant';
+import { CENTER_CUSTOM_FIELD_SEEDS } from 'src/engine/workspace-manager/dev-seeder/metadata/custom-fields/constants/center-custom-field-seeds.constant';
 import { FieldMetadataSeed } from 'src/engine/workspace-manager/dev-seeder/metadata/types/field-metadata-seed.type';
 import { ObjectMetadataSeed } from 'src/engine/workspace-manager/dev-seeder/metadata/types/object-metadata-seed.type';
 import { CreateFieldInput } from 'src/engine/metadata-modules/field-metadata/dtos/create-field.input';
@@ -49,6 +77,62 @@ export class DevSeederMetadataService {
         {
           seed: DEAL_CUSTOM_OBJECT_SEED,
           fields: DEAL_CUSTOM_FIELD_SEEDS,
+        },
+        {
+          seed: ORDER_CUSTOM_OBJECT_SEED,
+          fields: ORDER_CUSTOM_FIELD_SEEDS,
+        },
+        {
+          seed: CLASS_CUSTOM_OBJECT_SEED,
+          fields: CLASS_CUSTOM_FIELD_SEEDS,
+        },
+        {
+          seed: APPOINTMENT_CUSTOM_OBJECT_SEED,
+          fields: APPOINTMENT_CUSTOM_FIELD_SEEDS,
+        },
+        {
+          seed: ATTENDANCE_CUSTOM_OBJECT_SEED,
+          fields: ATTENDANCE_CUSTOM_FIELD_SEEDS,
+        },
+        {
+          seed: CALL_CUSTOM_OBJECT_SEED,
+          fields: CALL_CUSTOM_FIELD_SEEDS,
+        },
+        {
+          seed: ENROLLMENT_CUSTOM_OBJECT_SEED,
+          fields: ENROLLMENT_CUSTOM_FIELD_SEEDS,
+        },
+        {
+          seed: NOTE_CUSTOM_OBJECT_SEED,
+          fields: NOTE_CUSTOM_FIELD_SEEDS,
+        },
+        {
+          seed: PRODUCT_CUSTOM_OBJECT_SEED,
+          fields: PRODUCT_CUSTOM_FIELD_SEEDS,
+        },
+        {
+          seed: ROOM_CUSTOM_OBJECT_SEED,
+          fields: ROOM_CUSTOM_FIELD_SEEDS,
+        },
+        {
+          seed: SCORE_TEMPLATE_CUSTOM_OBJECT_SEED,
+          fields: SCORE_TEMPLATE_CUSTOM_FIELD_SEEDS,
+        },
+        {
+          seed: TASK_CUSTOM_OBJECT_SEED,
+          fields: TASK_CUSTOM_FIELD_SEEDS,
+        },
+        {
+          seed: TEACHER_CUSTOM_OBJECT_SEED,
+          fields: TEACHER_CUSTOM_FIELD_SEEDS,
+        },
+        {
+          seed: INVENTORY_CUSTOM_OBJECT_SEED,
+          fields: INVENTORY_CUSTOM_FIELD_SEEDS,
+        },
+        {
+          seed: CENTER_CUSTOM_OBJECT_SEED,
+          fields: CENTER_CUSTOM_FIELD_SEEDS,
         },
         {
           seed: STUDENT_CUSTOM_OBJECT_SEED,
