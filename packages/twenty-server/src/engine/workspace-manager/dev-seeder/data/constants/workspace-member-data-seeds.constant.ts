@@ -35,7 +35,7 @@ export const WORKSPACE_MEMBER_DATA_SEEDS: WorkspaceMemberDataSeed[] = [
     nameLastName: 'Apple',
     locale: 'en',
     colorScheme: 'Light',
-    userEmail: 'tim@apple.dev',
+    userEmail: 'admin@salegon.com',
     userId: USER_DATA_SEED_IDS.TIM,
   },
   {

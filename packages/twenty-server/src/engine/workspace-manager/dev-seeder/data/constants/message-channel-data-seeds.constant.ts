@@ -56,7 +56,7 @@ export const MESSAGE_CHANNEL_DATA_SEEDS: MessageChannelDataSeed[] = [
     isContactAutoCreationEnabled: true,
     type: 'email',
     connectedAccountId: CONNECTED_ACCOUNT_DATA_SEED_IDS.TIM,
-    handle: 'tim@apple.dev',
+    handle: 'admin@salegon.com',
     isSyncEnabled: true,
     visibility: MessageChannelVisibility.SHARE_EVERYTHING,
     syncStage: MessageChannelSyncStage.FULL_MESSAGE_LIST_FETCH_PENDING,

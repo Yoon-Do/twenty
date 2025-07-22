@@ -38,7 +38,7 @@ export const CALENDAR_CHANNEL_DATA_SEEDS: CalendarChannelDataSeed[] = [
   {
     id: CALENDAR_CHANNEL_DATA_SEED_IDS.TIM,
     connectedAccountId: CONNECTED_ACCOUNT_DATA_SEED_IDS.TIM,
-    handle: 'tim@apple.dev',
+    handle: 'admin@salegon.com',
     visibility: CalendarChannelVisibility.METADATA,
     isContactAutoCreationEnabled: true,
     isSyncEnabled: true,

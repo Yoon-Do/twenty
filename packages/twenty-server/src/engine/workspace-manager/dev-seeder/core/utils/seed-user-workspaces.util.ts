@@ -2,10 +2,7 @@ import { DataSource } from 'typeorm';
 
 import { UserWorkspace } from 'src/engine/core-modules/user-workspace/user-workspace.entity';
 import { USER_DATA_SEED_IDS } from 'src/engine/workspace-manager/dev-seeder/core/utils/seed-users.util';
-import {
-  SEED_APPLE_WORKSPACE_ID,
-  SEED_YCOMBINATOR_WORKSPACE_ID,
-} from 'src/engine/workspace-manager/dev-seeder/core/utils/seed-workspaces.util';
+import { SEED_YCOMBINATOR_WORKSPACE_ID } from 'src/engine/workspace-manager/dev-seeder/core/utils/seed-workspaces.util';
 
 const tableName = 'userWorkspace';
 
@@ -27,31 +24,6 @@ export const seedUserWorkspaces = async (
 ) => {
   let userWorkspaces: Pick<UserWorkspace, 'id' | 'userId' | 'workspaceId'>[] =
     [];
-
-  if (workspaceId === SEED_APPLE_WORKSPACE_ID) {
-    userWorkspaces = [
-      {
-        id: USER_WORKSPACE_DATA_SEED_IDS.TIM,
-        userId: USER_DATA_SEED_IDS.TIM,
-        workspaceId,
-      },
-      {
-        id: USER_WORKSPACE_DATA_SEED_IDS.JANE,
-        userId: USER_DATA_SEED_IDS.JANE,
-        workspaceId,
-      },
-      {
-        id: USER_WORKSPACE_DATA_SEED_IDS.JONY,
-        userId: USER_DATA_SEED_IDS.JONY,
-        workspaceId,
-      },
-      {
-        id: USER_WORKSPACE_DATA_SEED_IDS.PHIL,
-        userId: USER_DATA_SEED_IDS.PHIL,
-        workspaceId,
-      },
-    ];
-  }
 
   if (workspaceId === SEED_YCOMBINATOR_WORKSPACE_ID) {
     userWorkspaces = [

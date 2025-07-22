@@ -10,10 +10,7 @@ import { ObjectPermissionService } from 'src/engine/metadata-modules/object-perm
 import { RoleService } from 'src/engine/metadata-modules/role/role.service';
 import { UserRoleService } from 'src/engine/metadata-modules/user-role/user-role.service';
 import { USER_WORKSPACE_DATA_SEED_IDS } from 'src/engine/workspace-manager/dev-seeder/core/utils/seed-user-workspaces.util';
-import {
-  SEED_APPLE_WORKSPACE_ID,
-  SEED_YCOMBINATOR_WORKSPACE_ID,
-} from 'src/engine/workspace-manager/dev-seeder/core/utils/seed-workspaces.util';
+import { SEED_YCOMBINATOR_WORKSPACE_ID } from 'src/engine/workspace-manager/dev-seeder/core/utils/seed-workspaces.util';
 
 @Injectable()
 export class DevSeederPermissionsService {
@@ -36,35 +33,8 @@ export class DevSeederPermissionsService {
 
     let adminUserWorkspaceId: string | undefined;
     let memberUserWorkspaceIds: string[] = [];
-    let limitedUserWorkspaceId: string | undefined;
-    let guestUserWorkspaceId: string | undefined;
 
-    if (workspaceId === SEED_APPLE_WORKSPACE_ID) {
-      adminUserWorkspaceId = USER_WORKSPACE_DATA_SEED_IDS.JANE;
-      limitedUserWorkspaceId = USER_WORKSPACE_DATA_SEED_IDS.TIM;
-      memberUserWorkspaceIds = [USER_WORKSPACE_DATA_SEED_IDS.JONY];
-      guestUserWorkspaceId = USER_WORKSPACE_DATA_SEED_IDS.PHIL;
-
-      // Create guest role only in this workspace
-      const guestRole = await this.roleService.createGuestRole({
-        workspaceId,
-      });
-
-      await this.userRoleService.assignRoleToUserWorkspace({
-        workspaceId,
-        userWorkspaceId: guestUserWorkspaceId,
-        roleId: guestRole.id,
-      });
-
-      const limitedRole =
-        await this.createLimitedRoleForSeedWorkspace(workspaceId);
-
-      await this.userRoleService.assignRoleToUserWorkspace({
-        workspaceId,
-        userWorkspaceId: limitedUserWorkspaceId,
-        roleId: limitedRole.id,
-      });
-    } else if (workspaceId === SEED_YCOMBINATOR_WORKSPACE_ID) {
+    if (workspaceId === SEED_YCOMBINATOR_WORKSPACE_ID) {
       adminUserWorkspaceId = USER_WORKSPACE_DATA_SEED_IDS.TIM_ACME;
       memberUserWorkspaceIds = [
         USER_WORKSPACE_DATA_SEED_IDS.JONY_ACME,
@@ -99,64 +69,5 @@ export class DevSeederPermissionsService {
         });
       }
     }
-  }
-
-  private async createLimitedRoleForSeedWorkspace(workspaceId: string) {
-    const customRole = await this.roleService.createRole({
-      workspaceId,
-      input: {
-        label: 'Object-restricted',
-        description:
-          'All permissions except read on Rockets and update on Pets',
-        icon: 'custom',
-        canUpdateAllSettings: true,
-        canReadAllObjectRecords: true,
-        canUpdateAllObjectRecords: true,
-        canSoftDeleteAllObjectRecords: true,
-        canDestroyAllObjectRecords: true,
-      },
-    });
-
-    const petObjectMetadata = await this.objectMetadataRepository.findOneOrFail(
-      {
-        where: {
-          nameSingular: 'pet',
-          workspaceId,
-        },
-      },
-    );
-
-    const rocketObjectMetadata =
-      await this.objectMetadataRepository.findOneOrFail({
-        where: {
-          nameSingular: 'rocket',
-          workspaceId,
-        },
-      });
-
-    await this.objectPermissionService.upsertObjectPermissions({
-      workspaceId,
-      input: {
-        roleId: customRole.id,
-        objectPermissions: [
-          {
-            objectMetadataId: petObjectMetadata.id,
-            canReadObjectRecords: true,
-            canUpdateObjectRecords: false,
-            canSoftDeleteObjectRecords: false,
-            canDestroyObjectRecords: false,
-          },
-          {
-            objectMetadataId: rocketObjectMetadata.id,
-            canReadObjectRecords: false,
-            canUpdateObjectRecords: false,
-            canSoftDeleteObjectRecords: false,
-            canDestroyObjectRecords: false,
-          },
-        ],
-      },
-    });
-
-    return customRole;
   }
 }
