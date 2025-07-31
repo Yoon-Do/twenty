@@ -1,0 +1,121 @@
+name: twenty-dev
+
+services:
+  server:
+    build:
+      context: ../..
+      dockerfile: packages/twenty-docker/twenty/Dockerfile
+      args:
+        REACT_APP_SERVER_BASE_URL: ${SERVER_URL:-http://localhost:3000}
+        APP_VERSION: ${TAG:-latest}
+    volumes:
+      - server-local-data:/app/packages/twenty-server/.local-storage
+      # Mount source code for development (optional - comment out if not needed)
+      - ../../packages/twenty-server:/app/packages/twenty-server/src:ro
+      - ../../packages/twenty-shared:/app/packages/twenty-shared/src:ro
+      - ../../packages/twenty-emails:/app/packages/twenty-emails/src:ro
+    ports:
+      - "3000:3000"
+    environment:
+      NODE_PORT: 3000
+      PG_DATABASE_URL: ${PG_DATABASE_URL}
+      SERVER_URL: ${SERVER_URL}
+      REDIS_URL: ${REDIS_URL}
+      DISABLE_DB_MIGRATIONS: ${DISABLE_DB_MIGRATIONS}
+      DISABLE_CRON_JOBS_REGISTRATION: ${DISABLE_CRON_JOBS_REGISTRATION}
+
+      STORAGE_TYPE: ${STORAGE_TYPE}
+      STORAGE_S3_REGION: ${STORAGE_S3_REGION}
+      STORAGE_S3_NAME: ${STORAGE_S3_NAME}
+      STORAGE_S3_ENDPOINT: ${STORAGE_S3_ENDPOINT}
+
+      APP_SECRET: ${APP_SECRET:-replace_me_with_a_random_string}
+      # MESSAGING_PROVIDER_GMAIL_ENABLED: ${MESSAGING_PROVIDER_GMAIL_ENABLED}
+      # CALENDAR_PROVIDER_GOOGLE_ENABLED: ${CALENDAR_PROVIDER_GOOGLE_ENABLED}
+      # AUTH_GOOGLE_CLIENT_ID: ${AUTH_GOOGLE_CLIENT_ID}
+      # AUTH_GOOGLE_CLIENT_SECRET: ${AUTH_GOOGLE_CLIENT_SECRET}
+      # AUTH_GOOGLE_CALLBACK_URL: ${AUTH_GOOGLE_CALLBACK_URL}
+      # AUTH_GOOGLE_APIS_CALLBACK_URL: ${AUTH_GOOGLE_APIS_CALLBACK_URL}
+
+      # CALENDAR_PROVIDER_MICROSOFT_ENABLED: ${CALENDAR_PROVIDER_MICROSOFT_ENABLED}
+      # MESSAGING_PROVIDER_MICROSOFT_ENABLED: ${MESSAGING_PROVIDER_MICROSOFT_ENABLED}
+      # AUTH_MICROSOFT_ENABLED: ${AUTH_MICROSOFT_ENABLED}
+      # AUTH_MICROSOFT_CLIENT_ID: ${AUTH_MICROSOFT_CLIENT_ID}
+      # AUTH_MICROSOFT_CLIENT_SECRET: ${AUTH_MICROSOFT_CLIENT_SECRET}
+      # AUTH_MICROSOFT_CALLBACK_URL: ${AUTH_MICROSOFT_CALLBACK_URL}
+      # AUTH_MICROSOFT_APIS_CALLBACK_URL: ${AUTH_MICROSOFT_APIS_CALLBACK_URL}
+
+      # EMAIL_FROM_ADDRESS: ${EMAIL_FROM_ADDRESS:-contact@yourdomain.com}
+      # EMAIL_FROM_NAME: ${EMAIL_FROM_NAME:-"John from YourDomain"}
+      # EMAIL_SYSTEM_ADDRESS: ${EMAIL_SYSTEM_ADDRESS:-system@yourdomain.com}
+      # EMAIL_DRIVER: ${EMAIL_DRIVER:-smtp}
+      # EMAIL_SMTP_HOST: ${EMAIL_SMTP_HOST:-smtp.gmail.com}
+      # EMAIL_SMTP_PORT: ${EMAIL_SMTP_PORT:-465}
+      # EMAIL_SMTP_USER: ${EMAIL_SMTP_USER:-}
+      # EMAIL_SMTP_PASSWORD: ${EMAIL_SMTP_PASSWORD:-}
+
+    healthcheck:
+      test: curl --fail http://localhost:3000/healthz
+      interval: 5s
+      timeout: 5s
+      retries: 20
+    restart: always
+
+  worker:
+    build:
+      context: ../..
+      dockerfile: packages/twenty-docker/twenty/Dockerfile
+      args:
+        REACT_APP_SERVER_BASE_URL: ${SERVER_URL:-http://localhost:3000}
+        APP_VERSION: ${TAG:-latest}
+    volumes:
+      - server-local-data:/app/packages/twenty-server/.local-storage
+      # Mount source code for development (optional - comment out if not needed)
+      - ../../packages/twenty-server:/app/packages/twenty-server/src:ro
+      - ../../packages/twenty-shared:/app/packages/twenty-shared/src:ro
+      - ../../packages/twenty-emails:/app/packages/twenty-emails/src:ro
+    command: ["yarn", "worker:prod"]
+    environment:
+      PG_DATABASE_URL: ${PG_DATABASE_URL}
+      SERVER_URL: ${SERVER_URL}
+      REDIS_URL: ${REDIS_URL}
+      DISABLE_DB_MIGRATIONS: "true" # it already runs on the server
+      DISABLE_CRON_JOBS_REGISTRATION: "true" # it already runs on the server
+
+      STORAGE_TYPE: ${STORAGE_TYPE}
+      STORAGE_S3_REGION: ${STORAGE_S3_REGION}
+      STORAGE_S3_NAME: ${STORAGE_S3_NAME}
+      STORAGE_S3_ENDPOINT: ${STORAGE_S3_ENDPOINT}
+
+      APP_SECRET: ${APP_SECRET:-replace_me_with_a_random_string}
+      # MESSAGING_PROVIDER_GMAIL_ENABLED: ${MESSAGING_PROVIDER_GMAIL_ENABLED}
+      # CALENDAR_PROVIDER_GOOGLE_ENABLED: ${CALENDAR_PROVIDER_GOOGLE_ENABLED}
+      # AUTH_GOOGLE_CLIENT_ID: ${AUTH_GOOGLE_CLIENT_ID}
+      # AUTH_GOOGLE_CLIENT_SECRET: ${AUTH_GOOGLE_CLIENT_SECRET}
+      # AUTH_GOOGLE_CALLBACK_URL: ${AUTH_GOOGLE_CALLBACK_URL}
+      # AUTH_GOOGLE_APIS_CALLBACK_URL: ${AUTH_GOOGLE_APIS_CALLBACK_URL}
+
+      # CALENDAR_PROVIDER_MICROSOFT_ENABLED: ${CALENDAR_PROVIDER_MICROSOFT_ENABLED}
+      # MESSAGING_PROVIDER_MICROSOFT_ENABLED: ${MESSAGING_PROVIDER_MICROSOFT_ENABLED}
+      # AUTH_MICROSOFT_ENABLED: ${AUTH_MICROSOFT_ENABLED}
+      # AUTH_MICROSOFT_CLIENT_ID: ${AUTH_MICROSOFT_CLIENT_ID}
+      # AUTH_MICROSOFT_CLIENT_SECRET: ${AUTH_MICROSOFT_CLIENT_SECRET}
+      # AUTH_MICROSOFT_CALLBACK_URL: ${AUTH_MICROSOFT_CALLBACK_URL}
+      # AUTH_MICROSOFT_APIS_CALLBACK_URL: ${AUTH_MICROSOFT_APIS_CALLBACK_URL}
+
+      # EMAIL_FROM_ADDRESS: ${EMAIL_FROM_ADDRESS:-contact@yourdomain.com}
+      # EMAIL_FROM_NAME: ${EMAIL_FROM_NAME:-"John from YourDomain"}
+      # EMAIL_SYSTEM_ADDRESS: ${EMAIL_SYSTEM_ADDRESS:-system@yourdomain.com}
+      # EMAIL_DRIVER: ${EMAIL_DRIVER:-smtp}
+      # EMAIL_SMTP_HOST: ${EMAIL_SMTP_HOST:-smtp.gmail.com}
+      # EMAIL_SMTP_PORT: ${EMAIL_SMTP_PORT:-465}
+      # EMAIL_SMTP_USER: ${EMAIL_SMTP_USER:-}
+      # EMAIL_SMTP_PASSWORD: ${EMAIL_SMTP_PASSWORD:-}
+
+    depends_on:
+      server:
+        condition: service_healthy
+    restart: always
+
+volumes:
+  server-local-data: 
