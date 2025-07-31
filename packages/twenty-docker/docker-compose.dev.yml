@@ -7,7 +7,7 @@ services:
       dockerfile: packages/twenty-docker/twenty/Dockerfile
       args:
         REACT_APP_SERVER_BASE_URL: ${SERVER_URL:-http://localhost:3000}
-        APP_VERSION: ${TAG:-latest}
+        APP_VERSION: "1.0.0"
     volumes:
       - server-local-data:/app/packages/twenty-server/.local-storage
       # Mount source code for development (optional - comment out if not needed)
@@ -67,7 +67,7 @@ services:
       dockerfile: packages/twenty-docker/twenty/Dockerfile
       args:
         REACT_APP_SERVER_BASE_URL: ${SERVER_URL:-http://localhost:3000}
-        APP_VERSION: ${TAG:-latest}
+        APP_VERSION: "1.0.0"
     volumes:
       - server-local-data:/app/packages/twenty-server/.local-storage
       # Mount source code for development (optional - comment out if not needed)
