@@ -46,6 +46,11 @@ export const seedFeatureFlags = async (
         value: false,
       },
       {
+        key: FeatureFlagKey.IS_WORKFLOW_BRANCH_ENABLED,
+        workspaceId: workspaceId,
+        value: false,
+      },
+      {
         key: FeatureFlagKey.IS_IMAP_SMTP_CALDAV_ENABLED,
         workspaceId: workspaceId,
         value: true,
@@ -57,6 +62,16 @@ export const seedFeatureFlags = async (
       },
       {
         key: FeatureFlagKey.IS_TWO_FACTOR_AUTHENTICATION_ENABLED,
+        workspaceId: workspaceId,
+        value: true,
+      },
+      {
+        key: FeatureFlagKey.IS_WORKSPACE_MIGRATION_V2_ENABLED,
+        workspaceId: workspaceId,
+        value: false,
+      },
+      {
+        key: FeatureFlagKey.IS_API_KEY_ROLES_ENABLED,
         workspaceId: workspaceId,
         value: true,
       },

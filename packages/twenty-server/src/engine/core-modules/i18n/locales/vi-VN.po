@@ -118,11 +118,6 @@ msgstr "Một nhiệm vụ"
 msgid "A task target"
 msgstr "Một mục tiêu nhiệm vụ"
 
-#. js-lingui-id: HTSJFW
-#: src/modules/webhook/standard-objects/webhook.workspace-entity.ts
-msgid "A webhook"
-msgstr "Một webhook"
-
 #. js-lingui-id: ZIN9Ga
 #: src/modules/workflow/common/standard-objects/workflow.workspace-entity.ts
 msgid "A workflow"
@@ -216,11 +211,6 @@ msgstr "Sự kiện được tổng hợp / lọc để hiển thị trên dòng
 msgid "Amount"
 msgstr "Số tiền"
 
-#. js-lingui-id: qeHcQj
-#: src/modules/api-key/standard-objects/api-key.workspace-entity.ts
-msgid "An API key"
-msgstr "Một khóa API"
-
 #. js-lingui-id: MjyFvC
 #: src/modules/attachment/standard-objects/attachment.workspace-entity.ts
 msgid "An attachment"
@@ -248,31 +238,6 @@ msgstr "Doanh Thu Định Kỳ Hàng Năm: Doanh thu thực tế hoặc ước t
 #: src/modules/view/standard-objects/view.workspace-entity.ts
 msgid "Any field filter value"
 msgstr "Giá trị của bất kỳ bộ lọc trường nào"
-
-#. js-lingui-id: yRnk5W
-#: src/modules/api-key/standard-objects/api-key.workspace-entity.ts
-msgid "API Key"
-msgstr "Khóa API"
-
-#. js-lingui-id: FfSJ1Y
-#: src/modules/api-key/standard-objects/api-key.workspace-entity.ts
-msgid "API Keys"
-msgstr "Các khóa API"
-
-#. js-lingui-id: puNs/l
-#: src/modules/api-key/standard-objects/api-key.workspace-entity.ts
-msgid "ApiKey expiration date"
-msgstr "Ngày hết hạn của ApiKey"
-
-#. js-lingui-id: YHiNxr
-#: src/modules/api-key/standard-objects/api-key.workspace-entity.ts
-msgid "ApiKey name"
-msgstr "Tên của ApiKey"
-
-#. js-lingui-id: xrndTt
-#: src/modules/api-key/standard-objects/api-key.workspace-entity.ts
-msgid "ApiKey revocation date"
-msgstr "Ngày thu hồi của ApiKey"
 
 #. js-lingui-id: DGW5iN
 #: src/engine/core-modules/approved-access-domain/services/approved-access-domain.service.ts
@@ -759,7 +724,6 @@ msgid "Describes if the view is in compact mode"
 msgstr "Mô tả liệu giao diện có ở chế độ rút gọn hay không"
 
 #. js-lingui-id: Nu4oKW
-#: src/modules/webhook/standard-objects/webhook.workspace-entity.ts
 #: src/modules/calendar/common/standard-objects/calendar-event.workspace-entity.ts
 #: src/modules/calendar/common/standard-objects/calendar-event.workspace-entity.ts
 msgid "Description"
@@ -799,6 +763,11 @@ msgstr "Tên miền"
 msgid "Due Date"
 msgstr "Ngày đến hạn"
 
+#. js-lingui-id: BXtAxc
+#: src/engine/metadata-modules/flat-field-metadata/validators/validate-enum-flat-field-metadata.validator.ts
+msgid "Duplicated option {field}"
+msgstr ""
+
 #. js-lingui-id: BBXuRb
 #: src/engine/core-modules/email-verification/email-verification-exception-filter.util.ts
 msgid "Email already verified."
@@ -836,6 +805,11 @@ msgstr "Nhân viên"
 #: src/modules/calendar/common/standard-objects/calendar-event.workspace-entity.ts
 msgid "End Date"
 msgstr "Ngày kết thúc"
+
+#. js-lingui-id: hcogQc
+#: src/engine/core-modules/domain-manager/validator/cloudflare.validate.ts
+msgid "Environnement variable CLOUDFLARE_API_KEY must be defined to use this feature."
+msgstr ""
 
 #. js-lingui-id: k//6Xs
 #: src/modules/timeline/standard-objects/timeline-activity.workspace-entity.ts
@@ -955,11 +929,6 @@ msgstr ""
 #: src/engine/twenty-orm/utils/compute-relation-connect-query-configs.util.ts
 msgid "Expected the same constraint fields to be used consistently across all operations for {connectFieldName}."
 msgstr "Mong đợi các trường ràng buộc giống nhau được sử dụng nhất quán cho mọi thao tác với {connectFieldName}."
-
-#. js-lingui-id: sZg7s1
-#: src/modules/api-key/standard-objects/api-key.workspace-entity.ts
-msgid "Expiration date"
-msgstr "Ngày hết hạn"
 
 #. js-lingui-id: 6Ki4Pv
 #: src/modules/favorite/standard-objects/favorite.workspace-entity.ts
@@ -1378,11 +1347,13 @@ msgid "Label is required"
 msgstr "Nhãn là bắt buộc"
 
 #. js-lingui-id: 4EGmy6
+#: src/engine/metadata-modules/flat-field-metadata/validators/validate-enum-flat-field-metadata.validator.ts
 #: src/engine/metadata-modules/field-metadata/services/field-metadata-enum-validation.service.ts
 msgid "Label must not be empty"
 msgstr "Nhãn không được để trống"
 
 #. js-lingui-id: k731jp
+#: src/engine/metadata-modules/flat-field-metadata/validators/validate-enum-flat-field-metadata.validator.ts
 #: src/engine/metadata-modules/field-metadata/services/field-metadata-enum-validation.service.ts
 msgid "Label must not contain a comma"
 msgstr "Nhãn không được chứa dấu phẩy"
@@ -1641,7 +1612,6 @@ msgstr "Thiếu các trường bắt buộc: ít nhất một ràng buộc duy n
 #: src/modules/favorite-folder/standard-objects/favorite-folder.workspace-entity.ts
 #: src/modules/company/standard-objects/company.workspace-entity.ts
 #: src/modules/attachment/standard-objects/attachment.workspace-entity.ts
-#: src/modules/api-key/standard-objects/api-key.workspace-entity.ts
 #: src/engine/twenty-orm/custom.workspace-entity.ts
 #: src/engine/twenty-orm/custom.workspace-entity.ts
 msgid "Name"
@@ -1825,16 +1795,6 @@ msgstr "Mở bản ghi trong"
 msgid "Operand"
 msgstr "Toán hạng"
 
-#. js-lingui-id: FZg3wM
-#: src/modules/webhook/standard-objects/webhook.workspace-entity.ts
-msgid "Operation"
-msgstr "Thao tác"
-
-#. js-lingui-id: B1MDds
-#: src/modules/webhook/standard-objects/webhook.workspace-entity.ts
-msgid "Operations"
-msgstr "Các thao tác"
-
 #. js-lingui-id: 4MyDFl
 #: src/modules/person/standard-objects/person.workspace-entity.ts
 #: src/modules/opportunity/standard-objects/opportunity.workspace-entity.ts
@@ -1892,32 +1852,48 @@ msgstr "Vị trí hồ sơ cơ hội"
 msgid "Opportunity stage"
 msgstr "Giai đoạn cơ hội"
 
+#. js-lingui-id: 2mFkfl
+#: src/engine/metadata-modules/flat-field-metadata/validators/validate-enum-flat-field-metadata.validator.ts
+msgid "Option id is invalid"
+msgstr ""
+
+#. js-lingui-id: MniXaX
+#: src/engine/metadata-modules/flat-field-metadata/validators/validate-enum-flat-field-metadata.validator.ts
+msgid "Option id is required"
+msgstr ""
+
 #. js-lingui-id: //eyK1
+#: src/engine/metadata-modules/flat-field-metadata/validators/validate-enum-flat-field-metadata.validator.ts
 #: src/engine/metadata-modules/field-metadata/services/field-metadata-enum-validation.service.ts
 msgid "Option label \"{sanitizedLabel}\" is beneath 1 character"
 msgstr "Nhãn tùy chọn \"{sanitizedLabel}\" dưới 1 ký tự"
 
 #. js-lingui-id: mTFS0z
+#: src/engine/metadata-modules/flat-field-metadata/validators/validate-enum-flat-field-metadata.validator.ts
 #: src/engine/metadata-modules/field-metadata/services/field-metadata-enum-validation.service.ts
 msgid "Option label exceeds 63 characters"
 msgstr "Nhãn tùy chọn vượt quá 63 ký tự"
 
 #. js-lingui-id: +E9N4m
+#: src/engine/metadata-modules/flat-field-metadata/validators/validate-enum-flat-field-metadata.validator.ts
 #: src/engine/metadata-modules/field-metadata/services/field-metadata-enum-validation.service.ts
 msgid "Option label is required"
 msgstr "Nhãn tùy chọn là bắt buộc"
 
 #. js-lingui-id: nQqNzE
+#: src/engine/metadata-modules/flat-field-metadata/validators/validate-enum-flat-field-metadata.validator.ts
 #: src/engine/metadata-modules/field-metadata/services/field-metadata-enum-validation.service.ts
 msgid "Option value \"{sanitizedValue}\" is beneath 1 character"
 msgstr "Giá trị tùy chọn \"{sanitizedValue}\" dưới 1 ký tự"
 
 #. js-lingui-id: 5m/1Hh
+#: src/engine/metadata-modules/flat-field-metadata/validators/validate-enum-flat-field-metadata.validator.ts
 #: src/engine/metadata-modules/field-metadata/services/field-metadata-enum-validation.service.ts
 msgid "Option value exceeds 63 characters"
 msgstr "Giá trị tùy chọn vượt quá 63 ký tự"
 
 #. js-lingui-id: /wsRPd
+#: src/engine/metadata-modules/flat-field-metadata/validators/validate-enum-flat-field-metadata.validator.ts
 #: src/engine/metadata-modules/field-metadata/services/field-metadata-enum-validation.service.ts
 msgid "Option value is required"
 msgstr "Giá trị tùy chọn là bắt buộc"
@@ -1927,11 +1903,6 @@ msgstr "Giá trị tùy chọn là bắt buộc"
 #: src/modules/view/standard-objects/view-field.workspace-entity.ts
 msgid "Optional aggregate operation"
 msgstr "Thao tác tổng hợp tùy chọn"
-
-#. js-lingui-id: kdClJ/
-#: src/modules/webhook/standard-objects/webhook.workspace-entity.ts
-msgid "Optional secret used to compute the HMAC signature for webhook payloads. This secret is shared between Twenty and the webhook consumer to authenticate webhook requests."
-msgstr "Tuỳ chọn bí mật được sử dụng để tính chữ ký HMAC cho tải trọng webhook. Bí mật này được chia sẻ giữa Twenty và người tiêu dùng webhook để xác thực các yêu cầu webhook."
 
 #. js-lingui-id: pDUbN1
 #: src/modules/view/standard-objects/view-filter-group.workspace-entity.ts
@@ -2107,11 +2078,6 @@ msgstr "Yêu cầu đã hết hạn, vui lòng thử lại."
 msgid "Response Status"
 msgstr "Trạng thái Phản hồi"
 
-#. js-lingui-id: MCWKAU
-#: src/modules/api-key/standard-objects/api-key.workspace-entity.ts
-msgid "Revocation date"
-msgstr "Ngày thu hồi"
-
 #. js-lingui-id: GDvlUT
 #: src/modules/messaging/common/standard-objects/message-participant.workspace-entity.ts
 #: src/modules/messaging/common/standard-objects/message-participant.workspace-entity.ts
@@ -2135,11 +2101,6 @@ msgstr "Phạm vi"
 msgid "Search vector"
 msgstr "Vector tìm kiếm"
 
-#. js-lingui-id: 8VEDbV
-#: src/modules/webhook/standard-objects/webhook.workspace-entity.ts
-msgid "Secret"
-msgstr "Bí mật"
-
 #. js-lingui-id: Tz0i8g
 #: src/modules/workflow/common/standard-objects/workflow-automated-trigger.workspace-entity.ts
 msgid "Settings"
@@ -2160,6 +2121,11 @@ msgstr "Giai đoạn"
 #: src/modules/calendar/common/standard-objects/calendar-event.workspace-entity.ts
 msgid "Start Date"
 msgstr "Ngày bắt đầu"
+
+#. js-lingui-id: amGzX5
+#: src/modules/workspace-member/standard-objects/workspace-member.workspace-entity.ts
+msgid "Start of the week"
+msgstr ""
 
 #. js-lingui-id: RS0o7b
 #: src/modules/workflow/common/standard-objects/workflow-run.workspace-entity.ts
@@ -2187,7 +2153,7 @@ msgid "Statuses cannot be set manually."
 msgstr "'Trạng thái không thể được đặt thủ công.'"
 
 #. js-lingui-id: u+rv4L
-#: src/modules/workflow/workflow-builder/workflow-step/workflow-version-step.workspace-service.ts
+#: src/modules/workflow/workflow-builder/workflow-version-step/workflow-version-step.workspace-service.ts
 msgid "Step is not a form"
 msgstr "Bước không phải là một biểu mẫu"
 
@@ -2248,11 +2214,6 @@ msgstr "Trạng thái đồng bộ"
 #: src/engine/twenty-orm/utils/compute-relation-connect-query-configs.util.ts
 msgid "Target object metadata not found for {connectFieldName}"
 msgstr "Không tìm thấy siêu dữ liệu đối tượng đích cho {connectFieldName}"
-
-#. js-lingui-id: 4SHJe4
-#: src/modules/webhook/standard-objects/webhook.workspace-entity.ts
-msgid "Target Url"
-msgstr "Địa Chỉ Url Mục Tiêu"
 
 #. js-lingui-id: Q3P/4s
 #: src/modules/timeline/standard-objects/timeline-activity.workspace-entity.ts
@@ -2476,12 +2437,14 @@ msgstr "Trạng thái phiên bản quy trình làm việc"
 
 #. js-lingui-id: NbABJb
 #: src/engine/metadata-modules/utils/validate-field-name-availability.utils.ts
+#: src/engine/metadata-modules/flat-field-metadata/validators/validate-flat-field-metadata-name-availability.validator.ts
 msgid "This name is not available as it is already used by another field"
 msgstr "Tên này không khả dụng vì đã được một trường khác sử dụng"
 
 #. js-lingui-id: yIUmAs
 #: src/engine/metadata-modules/utils/validate-metadata-name-is-not-reserved-keyword.ts
 #: src/engine/metadata-modules/utils/validate-field-name-availability.utils.ts
+#: src/engine/metadata-modules/flat-field-metadata/validators/validate-flat-field-metadata-name-availability.validator.ts
 msgid "This name is not available."
 msgstr "Tên này không khả dụng."
 
@@ -2622,10 +2585,20 @@ msgstr "Người dùng không phải là một phần của không gian làm vi�
 msgid "User time zone"
 msgstr "Múi giờ người dùng"
 
+#. js-lingui-id: VkcC68
+#: src/engine/core-modules/auth/services/auth.service.ts
+msgid "User was not created with email/password"
+msgstr ""
+
 #. js-lingui-id: 43zCwQ
 #: src/modules/workspace-member/standard-objects/workspace-member.workspace-entity.ts
 msgid "User's preferred date format"
 msgstr "Định dạng ngày ưa thích của người dùng"
+
+#. js-lingui-id: Uce+A8
+#: src/modules/workspace-member/standard-objects/workspace-member.workspace-entity.ts
+msgid "User's preferred start day of the week"
+msgstr ""
 
 #. js-lingui-id: kJuoKm
 #: src/modules/workspace-member/standard-objects/workspace-member.workspace-entity.ts
@@ -2636,6 +2609,11 @@ msgstr "Định dạng thời gian ưa thích của người dùng"
 #: src/modules/view/standard-objects/view-filter.workspace-entity.ts
 msgid "Value"
 msgstr "Giá trị"
+
+#. js-lingui-id: UBPzFQ
+#: src/engine/metadata-modules/flat-field-metadata/validators/validate-enum-flat-field-metadata.validator.ts
+msgid "Value must be in UPPER_CASE and follow snake_case \"{sanitizedValue}\""
+msgstr ""
 
 #. js-lingui-id: 7aatUy
 #: src/modules/workflow/common/standard-objects/workflow-version.workspace-entity.ts
@@ -2870,30 +2848,10 @@ msgstr "Tính khả dụng"
 msgid "Visible"
 msgstr "Có thể nhìn thấy"
 
-#. js-lingui-id: TRDppN
-#: src/modules/webhook/standard-objects/webhook.workspace-entity.ts
-msgid "Webhook"
-msgstr "Webhooks"
-
-#. js-lingui-id: fyB2Wp
-#: src/modules/webhook/standard-objects/webhook.workspace-entity.ts
-msgid "Webhook operation"
-msgstr "Hoạt động webhook"
-
-#. js-lingui-id: gONLmX
-#: src/modules/webhook/standard-objects/webhook.workspace-entity.ts
-msgid "Webhook operations"
-msgstr "Các hoạt động webhook"
-
-#. js-lingui-id: cPoSTF
-#: src/modules/webhook/standard-objects/webhook.workspace-entity.ts
-msgid "Webhook target url"
-msgstr "Url mục tiêu của webhook"
-
-#. js-lingui-id: v1kQyJ
-#: src/modules/webhook/standard-objects/webhook.workspace-entity.ts
-msgid "Webhooks"
-msgstr "Webhooks"
+#. js-lingui-id: xvV2NJ
+#: src/engine/twenty-orm/error-handling/compute-twenty-orm-exception.ts
+msgid "We are experiencing a temporary issue with our database. Please try again later."
+msgstr ""
 
 #. js-lingui-id: TVkCrJ
 #: src/engine/core-modules/email-verification/services/email-verification.service.ts

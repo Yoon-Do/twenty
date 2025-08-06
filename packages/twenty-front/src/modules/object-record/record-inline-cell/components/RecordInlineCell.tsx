@@ -14,7 +14,7 @@ import { useIsFieldInputOnly } from '@/object-record/record-field/hooks/useIsFie
 import { useOpenFieldInputEditMode } from '@/object-record/record-field/hooks/useOpenFieldInputEditMode';
 
 import { RecordFieldComponentInstanceContext } from '@/object-record/record-field/states/contexts/RecordFieldComponentInstanceContext';
-import { isInlineCellInEditModeScopedState } from '@/object-record/record-inline-cell/states/isInlineCellInEditModeScopedState';
+import { isInlineCellInEditModeFamilyState } from '@/object-record/record-inline-cell/states/isInlineCellInEditModeFamilyState';
 import { getDropdownFocusIdForRecordField } from '@/object-record/utils/getDropdownFocusIdForRecordField';
 import { useGoBackToPreviousDropdownFocusId } from '@/ui/layout/dropdown/hooks/useGoBackToPreviousDropdownFocusId';
 import { activeDropdownFocusIdState } from '@/ui/layout/dropdown/states/activeDropdownFocusIdState';
@@ -43,7 +43,7 @@ export const RecordInlineCell = ({
     isDisplayModeFixHeight,
     onOpenEditMode: onOpenEditModeFromContext,
     onCloseEditMode: onCloseEditModeFromContext,
-    isReadOnly,
+    isRecordFieldReadOnly: isReadOnly,
   } = useContext(FieldContext);
 
   const { openFieldInput, closeFieldInput } = useOpenFieldInputEditMode();
@@ -85,7 +85,7 @@ export const RecordInlineCell = ({
   );
 
   const setIsInlineCellInEditMode = useSetRecoilState(
-    isInlineCellInEditModeScopedState(recordFieldComponentInstanceId),
+    isInlineCellInEditModeFamilyState(recordFieldComponentInstanceId),
   );
 
   const closeInlineCell = useCallback(() => {

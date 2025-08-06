@@ -118,11 +118,6 @@ msgstr "Une tâche"
 msgid "A task target"
 msgstr "Une cible de tâche"
 
-#. js-lingui-id: HTSJFW
-#: src/modules/webhook/standard-objects/webhook.workspace-entity.ts
-msgid "A webhook"
-msgstr "Un webhook"
-
 #. js-lingui-id: ZIN9Ga
 #: src/modules/workflow/common/standard-objects/workflow.workspace-entity.ts
 msgid "A workflow"
@@ -216,11 +211,6 @@ msgstr "Événement agrégé / filtré à afficher sur la chronologie"
 msgid "Amount"
 msgstr "Montant"
 
-#. js-lingui-id: qeHcQj
-#: src/modules/api-key/standard-objects/api-key.workspace-entity.ts
-msgid "An API key"
-msgstr "Une clé API"
-
 #. js-lingui-id: MjyFvC
 #: src/modules/attachment/standard-objects/attachment.workspace-entity.ts
 msgid "An attachment"
@@ -248,31 +238,6 @@ msgstr "Revenu annuel récurrent : Le revenu annuel réel ou estimé de l'entrep
 #: src/modules/view/standard-objects/view.workspace-entity.ts
 msgid "Any field filter value"
 msgstr "N'importe quelle valeur de filtre de champ"
-
-#. js-lingui-id: yRnk5W
-#: src/modules/api-key/standard-objects/api-key.workspace-entity.ts
-msgid "API Key"
-msgstr "Clé API"
-
-#. js-lingui-id: FfSJ1Y
-#: src/modules/api-key/standard-objects/api-key.workspace-entity.ts
-msgid "API Keys"
-msgstr "Clés API"
-
-#. js-lingui-id: puNs/l
-#: src/modules/api-key/standard-objects/api-key.workspace-entity.ts
-msgid "ApiKey expiration date"
-msgstr "Date d'expiration de la clé API"
-
-#. js-lingui-id: YHiNxr
-#: src/modules/api-key/standard-objects/api-key.workspace-entity.ts
-msgid "ApiKey name"
-msgstr "Nom de la clé API"
-
-#. js-lingui-id: xrndTt
-#: src/modules/api-key/standard-objects/api-key.workspace-entity.ts
-msgid "ApiKey revocation date"
-msgstr "Date de révocation de la clé API"
 
 #. js-lingui-id: DGW5iN
 #: src/engine/core-modules/approved-access-domain/services/approved-access-domain.service.ts
@@ -759,7 +724,6 @@ msgid "Describes if the view is in compact mode"
 msgstr "Indique si la vue est en mode compact"
 
 #. js-lingui-id: Nu4oKW
-#: src/modules/webhook/standard-objects/webhook.workspace-entity.ts
 #: src/modules/calendar/common/standard-objects/calendar-event.workspace-entity.ts
 #: src/modules/calendar/common/standard-objects/calendar-event.workspace-entity.ts
 msgid "Description"
@@ -799,6 +763,11 @@ msgstr "Nom de domaine"
 msgid "Due Date"
 msgstr "Date d'échéance"
 
+#. js-lingui-id: BXtAxc
+#: src/engine/metadata-modules/flat-field-metadata/validators/validate-enum-flat-field-metadata.validator.ts
+msgid "Duplicated option {field}"
+msgstr ""
+
 #. js-lingui-id: BBXuRb
 #: src/engine/core-modules/email-verification/email-verification-exception-filter.util.ts
 msgid "Email already verified."
@@ -836,6 +805,11 @@ msgstr "Employés"
 #: src/modules/calendar/common/standard-objects/calendar-event.workspace-entity.ts
 msgid "End Date"
 msgstr "Date de fin"
+
+#. js-lingui-id: hcogQc
+#: src/engine/core-modules/domain-manager/validator/cloudflare.validate.ts
+msgid "Environnement variable CLOUDFLARE_API_KEY must be defined to use this feature."
+msgstr ""
 
 #. js-lingui-id: k//6Xs
 #: src/modules/timeline/standard-objects/timeline-activity.workspace-entity.ts
@@ -955,11 +929,6 @@ msgstr ""
 #: src/engine/twenty-orm/utils/compute-relation-connect-query-configs.util.ts
 msgid "Expected the same constraint fields to be used consistently across all operations for {connectFieldName}."
 msgstr "Il est attendu que les mêmes champs de contrainte soient utilisés de manière cohérente dans toutes les opérations pour {connectFieldName}."
-
-#. js-lingui-id: sZg7s1
-#: src/modules/api-key/standard-objects/api-key.workspace-entity.ts
-msgid "Expiration date"
-msgstr "Date d'expiration"
 
 #. js-lingui-id: 6Ki4Pv
 #: src/modules/favorite/standard-objects/favorite.workspace-entity.ts
@@ -1378,11 +1347,13 @@ msgid "Label is required"
 msgstr "L'étiquette est requise"
 
 #. js-lingui-id: 4EGmy6
+#: src/engine/metadata-modules/flat-field-metadata/validators/validate-enum-flat-field-metadata.validator.ts
 #: src/engine/metadata-modules/field-metadata/services/field-metadata-enum-validation.service.ts
 msgid "Label must not be empty"
 msgstr "L'étiquette ne doit pas être vide"
 
 #. js-lingui-id: k731jp
+#: src/engine/metadata-modules/flat-field-metadata/validators/validate-enum-flat-field-metadata.validator.ts
 #: src/engine/metadata-modules/field-metadata/services/field-metadata-enum-validation.service.ts
 msgid "Label must not contain a comma"
 msgstr "L'étiquette ne doit pas contenir de virgule"
@@ -1641,7 +1612,6 @@ msgstr "Champs requis manquants : au moins une contrainte unique doit être enti
 #: src/modules/favorite-folder/standard-objects/favorite-folder.workspace-entity.ts
 #: src/modules/company/standard-objects/company.workspace-entity.ts
 #: src/modules/attachment/standard-objects/attachment.workspace-entity.ts
-#: src/modules/api-key/standard-objects/api-key.workspace-entity.ts
 #: src/engine/twenty-orm/custom.workspace-entity.ts
 #: src/engine/twenty-orm/custom.workspace-entity.ts
 msgid "Name"
@@ -1825,16 +1795,6 @@ msgstr "Ouvrir l'enregistrement dans"
 msgid "Operand"
 msgstr "Opérande"
 
-#. js-lingui-id: FZg3wM
-#: src/modules/webhook/standard-objects/webhook.workspace-entity.ts
-msgid "Operation"
-msgstr "Opération"
-
-#. js-lingui-id: B1MDds
-#: src/modules/webhook/standard-objects/webhook.workspace-entity.ts
-msgid "Operations"
-msgstr "Opérations"
-
 #. js-lingui-id: 4MyDFl
 #: src/modules/person/standard-objects/person.workspace-entity.ts
 #: src/modules/opportunity/standard-objects/opportunity.workspace-entity.ts
@@ -1892,32 +1852,48 @@ msgstr "Position de l'enregistrement de l'opportunité"
 msgid "Opportunity stage"
 msgstr "Étape de l'opportunité"
 
+#. js-lingui-id: 2mFkfl
+#: src/engine/metadata-modules/flat-field-metadata/validators/validate-enum-flat-field-metadata.validator.ts
+msgid "Option id is invalid"
+msgstr ""
+
+#. js-lingui-id: MniXaX
+#: src/engine/metadata-modules/flat-field-metadata/validators/validate-enum-flat-field-metadata.validator.ts
+msgid "Option id is required"
+msgstr ""
+
 #. js-lingui-id: //eyK1
+#: src/engine/metadata-modules/flat-field-metadata/validators/validate-enum-flat-field-metadata.validator.ts
 #: src/engine/metadata-modules/field-metadata/services/field-metadata-enum-validation.service.ts
 msgid "Option label \"{sanitizedLabel}\" is beneath 1 character"
 msgstr "L'étiquette d'option \"{sanitizedLabel}\" est en dessous de 1 caractère"
 
 #. js-lingui-id: mTFS0z
+#: src/engine/metadata-modules/flat-field-metadata/validators/validate-enum-flat-field-metadata.validator.ts
 #: src/engine/metadata-modules/field-metadata/services/field-metadata-enum-validation.service.ts
 msgid "Option label exceeds 63 characters"
 msgstr "L'étiquette d'option dépasse 63 caractères"
 
 #. js-lingui-id: +E9N4m
+#: src/engine/metadata-modules/flat-field-metadata/validators/validate-enum-flat-field-metadata.validator.ts
 #: src/engine/metadata-modules/field-metadata/services/field-metadata-enum-validation.service.ts
 msgid "Option label is required"
 msgstr "L'étiquette d'option est requise"
 
 #. js-lingui-id: nQqNzE
+#: src/engine/metadata-modules/flat-field-metadata/validators/validate-enum-flat-field-metadata.validator.ts
 #: src/engine/metadata-modules/field-metadata/services/field-metadata-enum-validation.service.ts
 msgid "Option value \"{sanitizedValue}\" is beneath 1 character"
 msgstr "La valeur de l'option \"{sanitizedValue}\" est en dessous de 1 caractère"
 
 #. js-lingui-id: 5m/1Hh
+#: src/engine/metadata-modules/flat-field-metadata/validators/validate-enum-flat-field-metadata.validator.ts
 #: src/engine/metadata-modules/field-metadata/services/field-metadata-enum-validation.service.ts
 msgid "Option value exceeds 63 characters"
 msgstr "La valeur de l'option dépasse 63 caractères"
 
 #. js-lingui-id: /wsRPd
+#: src/engine/metadata-modules/flat-field-metadata/validators/validate-enum-flat-field-metadata.validator.ts
 #: src/engine/metadata-modules/field-metadata/services/field-metadata-enum-validation.service.ts
 msgid "Option value is required"
 msgstr "La valeur de l'option est requise"
@@ -1927,11 +1903,6 @@ msgstr "La valeur de l'option est requise"
 #: src/modules/view/standard-objects/view-field.workspace-entity.ts
 msgid "Optional aggregate operation"
 msgstr "Opération d'agrégation facultative"
-
-#. js-lingui-id: kdClJ/
-#: src/modules/webhook/standard-objects/webhook.workspace-entity.ts
-msgid "Optional secret used to compute the HMAC signature for webhook payloads. This secret is shared between Twenty and the webhook consumer to authenticate webhook requests."
-msgstr "Secret facultatif utilisé pour calculer la signature HMAC des charges utiles du webhook. Ce secret est partagé entre Twenty et le consommateur de webhook pour authentifier les demandes de webhook."
 
 #. js-lingui-id: pDUbN1
 #: src/modules/view/standard-objects/view-filter-group.workspace-entity.ts
@@ -2107,11 +2078,6 @@ msgstr "La demande a expiré, veuillez réessayer."
 msgid "Response Status"
 msgstr "Statut de la réponse"
 
-#. js-lingui-id: MCWKAU
-#: src/modules/api-key/standard-objects/api-key.workspace-entity.ts
-msgid "Revocation date"
-msgstr "Date de révocation"
-
 #. js-lingui-id: GDvlUT
 #: src/modules/messaging/common/standard-objects/message-participant.workspace-entity.ts
 #: src/modules/messaging/common/standard-objects/message-participant.workspace-entity.ts
@@ -2135,11 +2101,6 @@ msgstr "Périmètres"
 msgid "Search vector"
 msgstr "Vecteur de recherche"
 
-#. js-lingui-id: 8VEDbV
-#: src/modules/webhook/standard-objects/webhook.workspace-entity.ts
-msgid "Secret"
-msgstr "Secret"
-
 #. js-lingui-id: Tz0i8g
 #: src/modules/workflow/common/standard-objects/workflow-automated-trigger.workspace-entity.ts
 msgid "Settings"
@@ -2160,6 +2121,11 @@ msgstr "Étape"
 #: src/modules/calendar/common/standard-objects/calendar-event.workspace-entity.ts
 msgid "Start Date"
 msgstr "Date de début"
+
+#. js-lingui-id: amGzX5
+#: src/modules/workspace-member/standard-objects/workspace-member.workspace-entity.ts
+msgid "Start of the week"
+msgstr ""
 
 #. js-lingui-id: RS0o7b
 #: src/modules/workflow/common/standard-objects/workflow-run.workspace-entity.ts
@@ -2187,7 +2153,7 @@ msgid "Statuses cannot be set manually."
 msgstr "Les statuts ne peuvent pas être définis manuellement."
 
 #. js-lingui-id: u+rv4L
-#: src/modules/workflow/workflow-builder/workflow-step/workflow-version-step.workspace-service.ts
+#: src/modules/workflow/workflow-builder/workflow-version-step/workflow-version-step.workspace-service.ts
 msgid "Step is not a form"
 msgstr "L'étape n'est pas un formulaire"
 
@@ -2248,11 +2214,6 @@ msgstr "Statut de la synchronisation"
 #: src/engine/twenty-orm/utils/compute-relation-connect-query-configs.util.ts
 msgid "Target object metadata not found for {connectFieldName}"
 msgstr "Métadonnées de l'objet cible non trouvées pour {connectFieldName}"
-
-#. js-lingui-id: 4SHJe4
-#: src/modules/webhook/standard-objects/webhook.workspace-entity.ts
-msgid "Target Url"
-msgstr "URL cible"
 
 #. js-lingui-id: Q3P/4s
 #: src/modules/timeline/standard-objects/timeline-activity.workspace-entity.ts
@@ -2476,12 +2437,14 @@ msgstr "Le statut de la version du workflow"
 
 #. js-lingui-id: NbABJb
 #: src/engine/metadata-modules/utils/validate-field-name-availability.utils.ts
+#: src/engine/metadata-modules/flat-field-metadata/validators/validate-flat-field-metadata-name-availability.validator.ts
 msgid "This name is not available as it is already used by another field"
 msgstr "Ce nom n'est pas disponible car il est déjà utilisé par un autre champ"
 
 #. js-lingui-id: yIUmAs
 #: src/engine/metadata-modules/utils/validate-metadata-name-is-not-reserved-keyword.ts
 #: src/engine/metadata-modules/utils/validate-field-name-availability.utils.ts
+#: src/engine/metadata-modules/flat-field-metadata/validators/validate-flat-field-metadata-name-availability.validator.ts
 msgid "This name is not available."
 msgstr "Ce nom n'est pas disponible."
 
@@ -2622,10 +2585,20 @@ msgstr "L'utilisateur ne fait pas partie de l'espace de travail"
 msgid "User time zone"
 msgstr "Fuseau horaire de l'utilisateur"
 
+#. js-lingui-id: VkcC68
+#: src/engine/core-modules/auth/services/auth.service.ts
+msgid "User was not created with email/password"
+msgstr ""
+
 #. js-lingui-id: 43zCwQ
 #: src/modules/workspace-member/standard-objects/workspace-member.workspace-entity.ts
 msgid "User's preferred date format"
 msgstr "Format de date préféré de l'utilisateur"
+
+#. js-lingui-id: Uce+A8
+#: src/modules/workspace-member/standard-objects/workspace-member.workspace-entity.ts
+msgid "User's preferred start day of the week"
+msgstr ""
 
 #. js-lingui-id: kJuoKm
 #: src/modules/workspace-member/standard-objects/workspace-member.workspace-entity.ts
@@ -2636,6 +2609,11 @@ msgstr "Format de l'heure préféré de l'utilisateur"
 #: src/modules/view/standard-objects/view-filter.workspace-entity.ts
 msgid "Value"
 msgstr "Valeur"
+
+#. js-lingui-id: UBPzFQ
+#: src/engine/metadata-modules/flat-field-metadata/validators/validate-enum-flat-field-metadata.validator.ts
+msgid "Value must be in UPPER_CASE and follow snake_case \"{sanitizedValue}\""
+msgstr ""
 
 #. js-lingui-id: 7aatUy
 #: src/modules/workflow/common/standard-objects/workflow-version.workspace-entity.ts
@@ -2870,30 +2848,10 @@ msgstr "Visibilité"
 msgid "Visible"
 msgstr "Visible"
 
-#. js-lingui-id: TRDppN
-#: src/modules/webhook/standard-objects/webhook.workspace-entity.ts
-msgid "Webhook"
-msgstr "Webhook"
-
-#. js-lingui-id: fyB2Wp
-#: src/modules/webhook/standard-objects/webhook.workspace-entity.ts
-msgid "Webhook operation"
-msgstr "Opération Webhook"
-
-#. js-lingui-id: gONLmX
-#: src/modules/webhook/standard-objects/webhook.workspace-entity.ts
-msgid "Webhook operations"
-msgstr "Opérations Webhook"
-
-#. js-lingui-id: cPoSTF
-#: src/modules/webhook/standard-objects/webhook.workspace-entity.ts
-msgid "Webhook target url"
-msgstr "URL cible du Webhook"
-
-#. js-lingui-id: v1kQyJ
-#: src/modules/webhook/standard-objects/webhook.workspace-entity.ts
-msgid "Webhooks"
-msgstr "Webhooks"
+#. js-lingui-id: xvV2NJ
+#: src/engine/twenty-orm/error-handling/compute-twenty-orm-exception.ts
+msgid "We are experiencing a temporary issue with our database. Please try again later."
+msgstr ""
 
 #. js-lingui-id: TVkCrJ
 #: src/engine/core-modules/email-verification/services/email-verification.service.ts

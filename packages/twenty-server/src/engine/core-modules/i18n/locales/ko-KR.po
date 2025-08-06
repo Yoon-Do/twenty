@@ -118,11 +118,6 @@ msgstr "작업"
 msgid "A task target"
 msgstr "작업 대상"
 
-#. js-lingui-id: HTSJFW
-#: src/modules/webhook/standard-objects/webhook.workspace-entity.ts
-msgid "A webhook"
-msgstr "웹훅"
-
 #. js-lingui-id: ZIN9Ga
 #: src/modules/workflow/common/standard-objects/workflow.workspace-entity.ts
 msgid "A workflow"
@@ -216,11 +211,6 @@ msgstr "타임라인에 표시할 집계/필터링된 이벤트"
 msgid "Amount"
 msgstr "금액"
 
-#. js-lingui-id: qeHcQj
-#: src/modules/api-key/standard-objects/api-key.workspace-entity.ts
-msgid "An API key"
-msgstr "API 키"
-
 #. js-lingui-id: MjyFvC
 #: src/modules/attachment/standard-objects/attachment.workspace-entity.ts
 msgid "An attachment"
@@ -248,31 +238,6 @@ msgstr "연간 반복 수익: 회사의 실제 또는 예상 연간 수익"
 #: src/modules/view/standard-objects/view.workspace-entity.ts
 msgid "Any field filter value"
 msgstr "어떤 필드 필터 값"
-
-#. js-lingui-id: yRnk5W
-#: src/modules/api-key/standard-objects/api-key.workspace-entity.ts
-msgid "API Key"
-msgstr "API 키"
-
-#. js-lingui-id: FfSJ1Y
-#: src/modules/api-key/standard-objects/api-key.workspace-entity.ts
-msgid "API Keys"
-msgstr "API 키"
-
-#. js-lingui-id: puNs/l
-#: src/modules/api-key/standard-objects/api-key.workspace-entity.ts
-msgid "ApiKey expiration date"
-msgstr "API 키 만료일"
-
-#. js-lingui-id: YHiNxr
-#: src/modules/api-key/standard-objects/api-key.workspace-entity.ts
-msgid "ApiKey name"
-msgstr "API 키 이름"
-
-#. js-lingui-id: xrndTt
-#: src/modules/api-key/standard-objects/api-key.workspace-entity.ts
-msgid "ApiKey revocation date"
-msgstr "API 키 해지 날짜"
 
 #. js-lingui-id: DGW5iN
 #: src/engine/core-modules/approved-access-domain/services/approved-access-domain.service.ts
@@ -759,7 +724,6 @@ msgid "Describes if the view is in compact mode"
 msgstr "뷰가 컴팩트 모드인지 설명"
 
 #. js-lingui-id: Nu4oKW
-#: src/modules/webhook/standard-objects/webhook.workspace-entity.ts
 #: src/modules/calendar/common/standard-objects/calendar-event.workspace-entity.ts
 #: src/modules/calendar/common/standard-objects/calendar-event.workspace-entity.ts
 msgid "Description"
@@ -799,6 +763,11 @@ msgstr "도메인 이름"
 msgid "Due Date"
 msgstr "마감일"
 
+#. js-lingui-id: BXtAxc
+#: src/engine/metadata-modules/flat-field-metadata/validators/validate-enum-flat-field-metadata.validator.ts
+msgid "Duplicated option {field}"
+msgstr ""
+
 #. js-lingui-id: BBXuRb
 #: src/engine/core-modules/email-verification/email-verification-exception-filter.util.ts
 msgid "Email already verified."
@@ -836,6 +805,11 @@ msgstr "직원"
 #: src/modules/calendar/common/standard-objects/calendar-event.workspace-entity.ts
 msgid "End Date"
 msgstr "종료 날짜"
+
+#. js-lingui-id: hcogQc
+#: src/engine/core-modules/domain-manager/validator/cloudflare.validate.ts
+msgid "Environnement variable CLOUDFLARE_API_KEY must be defined to use this feature."
+msgstr ""
 
 #. js-lingui-id: k//6Xs
 #: src/modules/timeline/standard-objects/timeline-activity.workspace-entity.ts
@@ -955,11 +929,6 @@ msgstr ""
 #: src/engine/twenty-orm/utils/compute-relation-connect-query-configs.util.ts
 msgid "Expected the same constraint fields to be used consistently across all operations for {connectFieldName}."
 msgstr "{connectFieldName}의 모든 작업에서 동일한 제약 필드를 일관되게 사용하는 것이 기대됩니다."
-
-#. js-lingui-id: sZg7s1
-#: src/modules/api-key/standard-objects/api-key.workspace-entity.ts
-msgid "Expiration date"
-msgstr "만료 날짜"
 
 #. js-lingui-id: 6Ki4Pv
 #: src/modules/favorite/standard-objects/favorite.workspace-entity.ts
@@ -1378,11 +1347,13 @@ msgid "Label is required"
 msgstr "레이블이 필요합니다"
 
 #. js-lingui-id: 4EGmy6
+#: src/engine/metadata-modules/flat-field-metadata/validators/validate-enum-flat-field-metadata.validator.ts
 #: src/engine/metadata-modules/field-metadata/services/field-metadata-enum-validation.service.ts
 msgid "Label must not be empty"
 msgstr "레이블은 비어 있어서는 안 됩니다"
 
 #. js-lingui-id: k731jp
+#: src/engine/metadata-modules/flat-field-metadata/validators/validate-enum-flat-field-metadata.validator.ts
 #: src/engine/metadata-modules/field-metadata/services/field-metadata-enum-validation.service.ts
 msgid "Label must not contain a comma"
 msgstr "레이블에 쉼표가 포함되어서는 안 됩니다"
@@ -1641,7 +1612,6 @@ msgstr "필수 필드 부족: '{connectFieldName}'에 대해 하나의 고유 �
 #: src/modules/favorite-folder/standard-objects/favorite-folder.workspace-entity.ts
 #: src/modules/company/standard-objects/company.workspace-entity.ts
 #: src/modules/attachment/standard-objects/attachment.workspace-entity.ts
-#: src/modules/api-key/standard-objects/api-key.workspace-entity.ts
 #: src/engine/twenty-orm/custom.workspace-entity.ts
 #: src/engine/twenty-orm/custom.workspace-entity.ts
 msgid "Name"
@@ -1825,16 +1795,6 @@ msgstr "다음에서 레코드 열기"
 msgid "Operand"
 msgstr "피연산자"
 
-#. js-lingui-id: FZg3wM
-#: src/modules/webhook/standard-objects/webhook.workspace-entity.ts
-msgid "Operation"
-msgstr "작업"
-
-#. js-lingui-id: B1MDds
-#: src/modules/webhook/standard-objects/webhook.workspace-entity.ts
-msgid "Operations"
-msgstr "작업"
-
 #. js-lingui-id: 4MyDFl
 #: src/modules/person/standard-objects/person.workspace-entity.ts
 #: src/modules/opportunity/standard-objects/opportunity.workspace-entity.ts
@@ -1892,32 +1852,48 @@ msgstr "기회 레코드 위치"
 msgid "Opportunity stage"
 msgstr "기회 단계"
 
+#. js-lingui-id: 2mFkfl
+#: src/engine/metadata-modules/flat-field-metadata/validators/validate-enum-flat-field-metadata.validator.ts
+msgid "Option id is invalid"
+msgstr ""
+
+#. js-lingui-id: MniXaX
+#: src/engine/metadata-modules/flat-field-metadata/validators/validate-enum-flat-field-metadata.validator.ts
+msgid "Option id is required"
+msgstr ""
+
 #. js-lingui-id: //eyK1
+#: src/engine/metadata-modules/flat-field-metadata/validators/validate-enum-flat-field-metadata.validator.ts
 #: src/engine/metadata-modules/field-metadata/services/field-metadata-enum-validation.service.ts
 msgid "Option label \"{sanitizedLabel}\" is beneath 1 character"
 msgstr "옵션 레이블 \"{sanitizedLabel}\"이(가) 1자 밑입니다"
 
 #. js-lingui-id: mTFS0z
+#: src/engine/metadata-modules/flat-field-metadata/validators/validate-enum-flat-field-metadata.validator.ts
 #: src/engine/metadata-modules/field-metadata/services/field-metadata-enum-validation.service.ts
 msgid "Option label exceeds 63 characters"
 msgstr "옵션 레이블이 63자를 초과합니다"
 
 #. js-lingui-id: +E9N4m
+#: src/engine/metadata-modules/flat-field-metadata/validators/validate-enum-flat-field-metadata.validator.ts
 #: src/engine/metadata-modules/field-metadata/services/field-metadata-enum-validation.service.ts
 msgid "Option label is required"
 msgstr "옵션 레이블이 필요합니다"
 
 #. js-lingui-id: nQqNzE
+#: src/engine/metadata-modules/flat-field-metadata/validators/validate-enum-flat-field-metadata.validator.ts
 #: src/engine/metadata-modules/field-metadata/services/field-metadata-enum-validation.service.ts
 msgid "Option value \"{sanitizedValue}\" is beneath 1 character"
 msgstr "옵션 값 \"{sanitizedValue}\"이(가) 1자 밑입니다"
 
 #. js-lingui-id: 5m/1Hh
+#: src/engine/metadata-modules/flat-field-metadata/validators/validate-enum-flat-field-metadata.validator.ts
 #: src/engine/metadata-modules/field-metadata/services/field-metadata-enum-validation.service.ts
 msgid "Option value exceeds 63 characters"
 msgstr "옵션 값이 63자를 초과합니다"
 
 #. js-lingui-id: /wsRPd
+#: src/engine/metadata-modules/flat-field-metadata/validators/validate-enum-flat-field-metadata.validator.ts
 #: src/engine/metadata-modules/field-metadata/services/field-metadata-enum-validation.service.ts
 msgid "Option value is required"
 msgstr "옵션 값이 필요합니다"
@@ -1927,11 +1903,6 @@ msgstr "옵션 값이 필요합니다"
 #: src/modules/view/standard-objects/view-field.workspace-entity.ts
 msgid "Optional aggregate operation"
 msgstr "선택적 집계 작업"
-
-#. js-lingui-id: kdClJ/
-#: src/modules/webhook/standard-objects/webhook.workspace-entity.ts
-msgid "Optional secret used to compute the HMAC signature for webhook payloads. This secret is shared between Twenty and the webhook consumer to authenticate webhook requests."
-msgstr "웹훅 페이로드의 HMAC 서명을 계산하는 데 사용되는 선택적 비밀입니다. 이 비밀은 웹훅 요청을 인증하기 위해 Twenty와 웹훅 소비자 간에 공유됩니다."
 
 #. js-lingui-id: pDUbN1
 #: src/modules/view/standard-objects/view-filter-group.workspace-entity.ts
@@ -2107,11 +2078,6 @@ msgstr "요청이 만료되었습니다. 다시 시도하십시오."
 msgid "Response Status"
 msgstr "응답 상태"
 
-#. js-lingui-id: MCWKAU
-#: src/modules/api-key/standard-objects/api-key.workspace-entity.ts
-msgid "Revocation date"
-msgstr "해지 날짜"
-
 #. js-lingui-id: GDvlUT
 #: src/modules/messaging/common/standard-objects/message-participant.workspace-entity.ts
 #: src/modules/messaging/common/standard-objects/message-participant.workspace-entity.ts
@@ -2135,11 +2101,6 @@ msgstr "범위"
 msgid "Search vector"
 msgstr "검색 벡터"
 
-#. js-lingui-id: 8VEDbV
-#: src/modules/webhook/standard-objects/webhook.workspace-entity.ts
-msgid "Secret"
-msgstr "비밀"
-
 #. js-lingui-id: Tz0i8g
 #: src/modules/workflow/common/standard-objects/workflow-automated-trigger.workspace-entity.ts
 msgid "Settings"
@@ -2160,6 +2121,11 @@ msgstr "단계"
 #: src/modules/calendar/common/standard-objects/calendar-event.workspace-entity.ts
 msgid "Start Date"
 msgstr "시작 날짜"
+
+#. js-lingui-id: amGzX5
+#: src/modules/workspace-member/standard-objects/workspace-member.workspace-entity.ts
+msgid "Start of the week"
+msgstr ""
 
 #. js-lingui-id: RS0o7b
 #: src/modules/workflow/common/standard-objects/workflow-run.workspace-entity.ts
@@ -2187,7 +2153,7 @@ msgid "Statuses cannot be set manually."
 msgstr "상태는 수동으로 설정할 수 없습니다."
 
 #. js-lingui-id: u+rv4L
-#: src/modules/workflow/workflow-builder/workflow-step/workflow-version-step.workspace-service.ts
+#: src/modules/workflow/workflow-builder/workflow-version-step/workflow-version-step.workspace-service.ts
 msgid "Step is not a form"
 msgstr "단계는 폼이 아닙니다"
 
@@ -2248,11 +2214,6 @@ msgstr "동기화 상태"
 #: src/engine/twenty-orm/utils/compute-relation-connect-query-configs.util.ts
 msgid "Target object metadata not found for {connectFieldName}"
 msgstr "표적 객체 메타데이터를 {connectFieldName}에 대해 찾을 수 없습니다."
-
-#. js-lingui-id: 4SHJe4
-#: src/modules/webhook/standard-objects/webhook.workspace-entity.ts
-msgid "Target Url"
-msgstr "대상 URL"
 
 #. js-lingui-id: Q3P/4s
 #: src/modules/timeline/standard-objects/timeline-activity.workspace-entity.ts
@@ -2476,12 +2437,14 @@ msgstr "워크플로 버전 상태"
 
 #. js-lingui-id: NbABJb
 #: src/engine/metadata-modules/utils/validate-field-name-availability.utils.ts
+#: src/engine/metadata-modules/flat-field-metadata/validators/validate-flat-field-metadata-name-availability.validator.ts
 msgid "This name is not available as it is already used by another field"
 msgstr "이 이름은 다른 필드에 이미 사용되었기 때문에 사용할 수 없습니다."
 
 #. js-lingui-id: yIUmAs
 #: src/engine/metadata-modules/utils/validate-metadata-name-is-not-reserved-keyword.ts
 #: src/engine/metadata-modules/utils/validate-field-name-availability.utils.ts
+#: src/engine/metadata-modules/flat-field-metadata/validators/validate-flat-field-metadata-name-availability.validator.ts
 msgid "This name is not available."
 msgstr "이 이름을 사용할 수 없습니다."
 
@@ -2622,10 +2585,20 @@ msgstr "사용자가 작업 공간에 속하지 않습니다"
 msgid "User time zone"
 msgstr "사용자 시간대"
 
+#. js-lingui-id: VkcC68
+#: src/engine/core-modules/auth/services/auth.service.ts
+msgid "User was not created with email/password"
+msgstr ""
+
 #. js-lingui-id: 43zCwQ
 #: src/modules/workspace-member/standard-objects/workspace-member.workspace-entity.ts
 msgid "User's preferred date format"
 msgstr "사용자가 선호하는 날짜 형식"
+
+#. js-lingui-id: Uce+A8
+#: src/modules/workspace-member/standard-objects/workspace-member.workspace-entity.ts
+msgid "User's preferred start day of the week"
+msgstr ""
 
 #. js-lingui-id: kJuoKm
 #: src/modules/workspace-member/standard-objects/workspace-member.workspace-entity.ts
@@ -2636,6 +2609,11 @@ msgstr "사용자가 선호하는 시간 형식"
 #: src/modules/view/standard-objects/view-filter.workspace-entity.ts
 msgid "Value"
 msgstr "값"
+
+#. js-lingui-id: UBPzFQ
+#: src/engine/metadata-modules/flat-field-metadata/validators/validate-enum-flat-field-metadata.validator.ts
+msgid "Value must be in UPPER_CASE and follow snake_case \"{sanitizedValue}\""
+msgstr ""
 
 #. js-lingui-id: 7aatUy
 #: src/modules/workflow/common/standard-objects/workflow-version.workspace-entity.ts
@@ -2870,30 +2848,10 @@ msgstr "가시성"
 msgid "Visible"
 msgstr "보임"
 
-#. js-lingui-id: TRDppN
-#: src/modules/webhook/standard-objects/webhook.workspace-entity.ts
-msgid "Webhook"
-msgstr "Webhook"
-
-#. js-lingui-id: fyB2Wp
-#: src/modules/webhook/standard-objects/webhook.workspace-entity.ts
-msgid "Webhook operation"
-msgstr "Webhook 작업"
-
-#. js-lingui-id: gONLmX
-#: src/modules/webhook/standard-objects/webhook.workspace-entity.ts
-msgid "Webhook operations"
-msgstr "Webhook 작업들"
-
-#. js-lingui-id: cPoSTF
-#: src/modules/webhook/standard-objects/webhook.workspace-entity.ts
-msgid "Webhook target url"
-msgstr "Webhook 대상 URL"
-
-#. js-lingui-id: v1kQyJ
-#: src/modules/webhook/standard-objects/webhook.workspace-entity.ts
-msgid "Webhooks"
-msgstr "Webhooks"
+#. js-lingui-id: xvV2NJ
+#: src/engine/twenty-orm/error-handling/compute-twenty-orm-exception.ts
+msgid "We are experiencing a temporary issue with our database. Please try again later."
+msgstr ""
 
 #. js-lingui-id: TVkCrJ
 #: src/engine/core-modules/email-verification/services/email-verification.service.ts

@@ -17,8 +17,8 @@ import {
   RecordUpdateHook,
   RecordUpdateHookParams,
 } from '@/object-record/record-field/contexts/FieldContext';
-import { useIsFieldValueReadOnly } from '@/object-record/record-field/hooks/useIsFieldValueReadOnly';
-import { useIsRecordReadOnly } from '@/object-record/record-field/hooks/useIsRecordReadOnly';
+import { useIsRecordReadOnly } from '@/object-record/record-field/hooks/read-only/useIsRecordReadOnly';
+import { isRecordFieldReadOnly } from '@/object-record/record-field/hooks/read-only/utils/isRecordFieldReadOnly';
 import { usePersistField } from '@/object-record/record-field/hooks/usePersistField';
 import { RecordFieldComponentInstanceContext } from '@/object-record/record-field/states/contexts/RecordFieldComponentInstanceContext';
 import { FieldRelationMetadata } from '@/object-record/record-field/types/FieldMetadata';
@@ -35,7 +35,6 @@ import { Dropdown } from '@/ui/layout/dropdown/components/Dropdown';
 import { DropdownContent } from '@/ui/layout/dropdown/components/DropdownContent';
 import { DropdownMenuItemsContainer } from '@/ui/layout/dropdown/components/DropdownMenuItemsContainer';
 import { useCloseDropdown } from '@/ui/layout/dropdown/hooks/useCloseDropdown';
-import { DropdownScope } from '@/ui/layout/dropdown/scopes/DropdownScope';
 import { isDropdownOpenComponentState } from '@/ui/layout/dropdown/states/isDropdownOpenComponentState';
 import { ConfirmationModal } from '@/ui/layout/modal/components/ConfirmationModal';
 import { useModal } from '@/ui/layout/modal/hooks/useModal';
@@ -108,7 +107,11 @@ export const RecordDetailRelationRecordsListItem = ({
   onClick,
   relationRecord,
 }: RecordDetailRelationRecordsListItemProps) => {
-  const { fieldDefinition, recordId } = useContext(FieldContext);
+  const {
+    fieldDefinition,
+    recordId,
+    isRecordFieldReadOnly: parentIsRecordFieldReadOnly,
+  } = useContext(FieldContext);
 
   const { openModal } = useModal();
 
@@ -159,12 +162,12 @@ export const RecordDetailRelationRecordsListItem = ({
     )
     .sort();
 
-  const dropdownScopeId = `record-field-card-menu-${relationFieldMetadataId}-${relationRecord.id}`;
+  const dropdownInstanceId = `record-field-card-menu-${relationFieldMetadataId}-${relationRecord.id}`;
 
   const { closeDropdown } = useCloseDropdown();
   const isDropdownOpen = useRecoilComponentValueV2(
     isDropdownOpenComponentState,
-    dropdownScopeId,
+    dropdownInstanceId,
   );
 
   const dropdownId = getRecordFieldCardRelationPickerDropdownId({
@@ -176,12 +179,12 @@ export const RecordDetailRelationRecordsListItem = ({
     dropdownId,
   );
 
-  const handleDetach = () => {
-    closeDropdown(dropdownScopeId);
+  const relationFieldMetadataItem = relationObjectMetadataItem.fields.find(
+    ({ id }) => id === relationFieldMetadataId,
+  );
 
-    const relationFieldMetadataItem = relationObjectMetadataItem.fields.find(
-      ({ id }) => id === relationFieldMetadataId,
-    );
+  const handleDetach = () => {
+    closeDropdown(dropdownInstanceId);
 
     if (!relationFieldMetadataItem?.name) return;
 
@@ -202,7 +205,7 @@ export const RecordDetailRelationRecordsListItem = ({
   };
 
   const handleDelete = async () => {
-    closeDropdown(dropdownScopeId);
+    closeDropdown(dropdownInstanceId);
     openModal(getDeleteRelationModalId(relationRecord.id));
   };
 
@@ -237,14 +240,9 @@ export const RecordDetailRelationRecordsListItem = ({
     [isExpanded],
   );
 
-  const isRecordReadOnly = useIsRecordReadOnly({
+  const isRelationRecordReadOnly = useIsRecordReadOnly({
     recordId: relationRecord.id,
     objectMetadataId: relationObjectMetadataItem.id,
-  });
-
-  const isFieldReadOnly = useIsFieldValueReadOnly({
-    fieldDefinition,
-    isRecordReadOnly,
   });
 
   return (
@@ -261,40 +259,38 @@ export const RecordDetailRelationRecordsListItem = ({
             accent="tertiary"
           />
         </StyledClickableZone>
-        {!isFieldReadOnly && (
-          <DropdownScope dropdownScopeId={dropdownScopeId}>
-            <Dropdown
-              dropdownId={dropdownScopeId}
-              dropdownPlacement="right-start"
-              clickableComponent={
-                <LightIconButton
-                  className="displayOnHover"
-                  Icon={IconDotsVertical}
-                  accent="tertiary"
-                />
-              }
-              dropdownComponents={
-                <DropdownContent>
-                  <DropdownMenuItemsContainer>
-                    <MenuItem
-                      LeftIcon={IconUnlink}
-                      text="Detach"
-                      onClick={handleDetach}
-                    />
-                    {!isAccountOwnerRelation &&
-                      relationObjectPermissions.canSoftDeleteObjectRecords && (
-                        <MenuItem
-                          LeftIcon={IconTrash}
-                          text="Delete"
-                          accent="danger"
-                          onClick={handleDelete}
-                        />
-                      )}
-                  </DropdownMenuItemsContainer>
-                </DropdownContent>
-              }
-            />
-          </DropdownScope>
+        {!parentIsRecordFieldReadOnly && (
+          <Dropdown
+            dropdownId={dropdownInstanceId}
+            dropdownPlacement="right-start"
+            clickableComponent={
+              <LightIconButton
+                className="displayOnHover"
+                Icon={IconDotsVertical}
+                accent="tertiary"
+              />
+            }
+            dropdownComponents={
+              <DropdownContent>
+                <DropdownMenuItemsContainer>
+                  <MenuItem
+                    LeftIcon={IconUnlink}
+                    text="Detach"
+                    onClick={handleDetach}
+                  />
+                  {!isAccountOwnerRelation &&
+                    relationObjectPermissions.canSoftDeleteObjectRecords && (
+                      <MenuItem
+                        LeftIcon={IconTrash}
+                        text="Delete"
+                        accent="danger"
+                        onClick={handleDelete}
+                      />
+                    )}
+                </DropdownMenuItemsContainer>
+              </DropdownContent>
+            }
+          />
         )}
       </StyledListItem>
       <AnimatedEaseInOut isOpen={isExpanded}>
@@ -315,7 +311,15 @@ export const RecordDetailRelationRecordsListItem = ({
                     labelWidth: 90,
                   }),
                   useUpdateRecord: useUpdateOneObjectRecordMutation,
-                  isReadOnly: isFieldReadOnly,
+                  isRecordFieldReadOnly: isRecordFieldReadOnly({
+                    isRecordReadOnly: isRelationRecordReadOnly,
+                    objectPermissions: relationObjectPermissions,
+                    fieldMetadataId: fieldMetadataItem.id,
+                    objectNameSingular: relationObjectMetadataNameSingular,
+                    fieldName: fieldMetadataItem.name,
+                    fieldType: fieldMetadataItem.type,
+                    isCustom: relationObjectMetadataItem.isCustom,
+                  }),
                 }}
               >
                 <RecordFieldComponentInstanceContext.Provider
