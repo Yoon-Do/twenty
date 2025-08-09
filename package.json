@@ -273,6 +273,7 @@
     "@yarnpkg/types": "^4.0.0",
     "chromatic": "^6.18.0",
     "concurrently": "^8.2.2",
+    "cross-env": "^10.0.0",
     "cross-var": "^1.1.0",
     "danger": "^11.3.0",
     "dotenv-cli": "^7.2.1",

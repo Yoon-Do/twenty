@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx nx run:*)",
+      "Bash(npx nx database:reset:*)",
+      "Bash(npm run command:*)",
+      "Bash(curl:*)",
+      "Bash(git checkout:*)"
+    ],
+    "deny": []
+  }
+}
