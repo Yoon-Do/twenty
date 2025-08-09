@@ -337,6 +337,13 @@ msgstr "Active"
 msgid "Active API keys created by you or your team."
 msgstr "Active API keys created by you or your team."
 
+#. js-lingui-id: KKfos4
+#: src/modules/workflow/workflow-diagram/components/WorkflowDiagramEmptyTriggerReadonly.tsx
+#: src/modules/workflow/workflow-diagram/components/WorkflowDiagramEmptyTriggerReadonly.tsx
+#: src/modules/workflow/workflow-diagram/components/WorkflowDiagramEmptyTriggerEditable.tsx
+msgid "Add a Trigger"
+msgstr "Add a Trigger"
+
 #. js-lingui-id: MPPZ54
 #: src/modules/settings/accounts/components/SettingsAccountsConnectedAccountsListCard.tsx
 msgid "Add account"
@@ -377,6 +384,7 @@ msgstr "Add inputs to your form"
 
 #. js-lingui-id: Hkobke
 #: src/modules/object-record/record-table/record-table-section/components/RecordTableRecordGroupSectionAddNew.tsx
+#: src/modules/object-record/record-table/components/RecordTableAddNew.tsx
 msgid "Add new"
 msgstr "Add new"
 
@@ -661,11 +669,6 @@ msgstr "Allow users to sign in with an email and password."
 #: src/modules/ui/feedback/snack-bar-manager/hooks/useSnackBar.ts
 msgid "An error occurred."
 msgstr "An error occurred."
-
-#. js-lingui-id: mJ6m4C
-#: src/modules/settings/developers/components/SettingsDevelopersWebhookForm.tsx
-msgid "An optional description"
-msgstr "An optional description"
 
 #. js-lingui-id: lxentK
 #: src/modules/settings/playground/components/PlaygroundSetupForm.tsx
@@ -4505,7 +4508,7 @@ msgid "Phone number copied to clipboard"
 msgstr "Phone number copied to clipboard"
 
 #. js-lingui-id: FdlpPK
-#: src/modules/workflow/workflow-variables/components/WorkflowVariablesDropdownObjectItems.tsx
+#: src/modules/workflow/workflow-variables/components/WorkflowVariablesDropdownAllItems.tsx
 msgid "Pick a {nameSingular} record"
 msgstr "Pick a {nameSingular} record"
 
@@ -4585,6 +4588,11 @@ msgstr "Postcode"
 #: src/pages/onboarding/CreateWorkspace.tsx
 msgid "Prefilling your workspace data..."
 msgstr "Prefilling your workspace data..."
+
+#. js-lingui-id: koeh2Y
+#: src/modules/settings/data-model/fields/forms/components/SettingsDataModelFieldIsUniqueForm.tsx
+msgid "Prevent from assigining the same value to different records"
+msgstr "Prevent from assigining the same value to different records"
 
 #. js-lingui-id: rdUucN
 #: src/modules/settings/data-model/objects/forms/components/SettingsDataModelObjectSettingsFormCard.tsx
@@ -5882,11 +5890,6 @@ msgstr "There was an error while updating password."
 msgid "Third"
 msgstr "Third"
 
-#. js-lingui-id: Kb1oAw
-#: src/modules/object-record/spreadsheet-import/utils/spreadsheetImportGetUnicityRowHook.ts
-msgid "This {columnName} value already exists in your import data"
-msgstr "This {columnName} value already exists in your import data"
-
 #. js-lingui-id: hqCwGc
 #: src/pages/settings/SettingsWorkspaceMembers.tsx
 msgid "This action cannot be undone. This will permanently delete this user and remove them from all their assignments."
@@ -6091,6 +6094,7 @@ msgstr "Ukrainian"
 
 #. js-lingui-id: wSXm5S
 #: src/pages/settings/data-model/SettingsObjectIndexTable.tsx
+#: src/modules/settings/data-model/fields/forms/components/SettingsDataModelFieldIsUniqueForm.tsx
 #: src/modules/object-record/record-board/record-board-column/utils/getAggregateOperationShortLabel.ts
 msgid "Unique"
 msgstr "Unique"
@@ -6367,10 +6371,15 @@ msgstr "We encountered an issue verifying"
 msgid "We support your square PNGs, JPEGs and GIFs under 10MB"
 msgstr "We support your square PNGs, JPEGs and GIFs under 10MB"
 
-#. js-lingui-id: ZS7vYp
+#. js-lingui-id: KIfYq0
 #: src/modules/settings/developers/components/SettingsDevelopersWebhookForm.tsx
-msgid "We will send POST requests to this endpoint for every new event"
-msgstr "We will send POST requests to this endpoint for every new event"
+msgid "We will send a POST request to this endpoint for each new event in application/json format"
+msgstr "We will send a POST request to this endpoint for each new event in application/json format"
+
+#. js-lingui-id: K4HbuR
+#: src/modules/settings/developers/components/SettingsDevelopersWebhookForm.tsx
+msgid "We will send a POST request to this endpoint for each new event in application/json format."
+msgstr "We will send a POST request to this endpoint for each new event in application/json format."
 
 #. js-lingui-id: PI4LiB
 #: src/pages/settings/security/SettingsSecurityApprovedAccessDomain.tsx

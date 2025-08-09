@@ -1,4 +1,4 @@
-import { useAuth } from '@/auth/hooks/useAuth';
+import { useRefreshObjectMetadataItems } from '@/object-metadata/hooks/useRefreshObjectMetadataItems';
 import { SaveAndCancelButtons } from '@/settings/components/SaveAndCancelButtons/SaveAndCancelButtons';
 import { SettingsPageContainer } from '@/settings/components/SettingsPageContainer';
 import { SettingsRoleAssignment } from '@/settings/roles/role-assignment/components/SettingsRoleAssignment';
@@ -15,7 +15,8 @@ import { useSnackBar } from '@/ui/feedback/snack-bar-manager/hooks/useSnackBar';
 import { SubMenuTopBarContainer } from '@/ui/layout/page/components/SubMenuTopBarContainer';
 import { TabList } from '@/ui/layout/tab-list/components/TabList';
 import { activeTabIdComponentState } from '@/ui/layout/tab-list/states/activeTabIdComponentState';
-import { useRecoilComponentValueV2 } from '@/ui/utilities/state/component-state/hooks/useRecoilComponentValueV2';
+import { useRecoilComponentValue } from '@/ui/utilities/state/component-state/hooks/useRecoilComponentValue';
+import { useLoadCurrentUser } from '@/users/hooks/useLoadCurrentUser';
 import { t } from '@lingui/core/macro';
 import { useState } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
@@ -33,7 +34,8 @@ type SettingsRoleProps = {
 };
 
 export const SettingsRole = ({ roleId, isCreateMode }: SettingsRoleProps) => {
-  const activeTabId = useRecoilComponentValueV2(
+  const { refreshObjectMetadataItems } = useRefreshObjectMetadataItems();
+  const activeTabId = useRecoilComponentValue(
     activeTabIdComponentState,
     SETTINGS_ROLE_DETAIL_TABS.COMPONENT_INSTANCE_ID + '-' + roleId,
   );
@@ -52,7 +54,7 @@ export const SettingsRole = ({ roleId, isCreateMode }: SettingsRoleProps) => {
     settingsPersistedRoleFamilyState(roleId),
   );
 
-  const { loadCurrentUser } = useAuth();
+  const { loadCurrentUser } = useLoadCurrentUser();
 
   const { enqueueErrorSnackBar } = useSnackBar();
 
@@ -111,8 +113,8 @@ export const SettingsRole = ({ roleId, isCreateMode }: SettingsRoleProps) => {
 
     try {
       await saveDraftRoleToDB();
-
       await loadCurrentUser();
+      await refreshObjectMetadataItems();
     } finally {
       setIsSaving(false);
     }

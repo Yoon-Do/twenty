@@ -2,15 +2,20 @@ import { Injectable } from '@nestjs/common';
 
 import { QUERY_MAX_RECORDS } from 'twenty-shared/constants';
 import { capitalize, isDefined } from 'twenty-shared/utils';
-import { FindOperator, In, InsertResult, ObjectLiteral } from 'typeorm';
+import {
+  type FindOperator,
+  In,
+  type InsertResult,
+  type ObjectLiteral,
+} from 'typeorm';
 
 import {
   GraphqlQueryBaseResolverService,
-  GraphqlQueryResolverExecutionArgs,
+  type GraphqlQueryResolverExecutionArgs,
 } from 'src/engine/api/graphql/graphql-query-runner/interfaces/base-resolver-service';
-import { ObjectRecord } from 'src/engine/api/graphql/workspace-query-builder/interfaces/object-record.interface';
-import { WorkspaceQueryRunnerOptions } from 'src/engine/api/graphql/workspace-query-runner/interfaces/query-runner-option.interface';
-import { CreateManyResolverArgs } from 'src/engine/api/graphql/workspace-resolver-builder/interfaces/workspace-resolvers-builder.interface';
+import { type ObjectRecord } from 'src/engine/api/graphql/workspace-query-builder/interfaces/object-record.interface';
+import { type WorkspaceQueryRunnerOptions } from 'src/engine/api/graphql/workspace-query-runner/interfaces/query-runner-option.interface';
+import { type CreateManyResolverArgs } from 'src/engine/api/graphql/workspace-resolver-builder/interfaces/workspace-resolvers-builder.interface';
 
 import {
   GraphqlQueryRunnerException,
@@ -20,12 +25,14 @@ import { ObjectRecordsToGraphqlConnectionHelper } from 'src/engine/api/graphql/g
 import { buildColumnsToReturn } from 'src/engine/api/graphql/graphql-query-runner/utils/build-columns-to-return';
 import { buildColumnsToSelect } from 'src/engine/api/graphql/graphql-query-runner/utils/build-columns-to-select';
 import { assertIsValidUuid } from 'src/engine/api/graphql/workspace-query-runner/utils/assert-is-valid-uuid.util';
+import { getAllSelectableFields } from 'src/engine/api/utils/get-all-selectable-fields.utils';
 import { compositeTypeDefinitions } from 'src/engine/metadata-modules/field-metadata/composite-types';
 import { assertMutationNotOnRemoteObject } from 'src/engine/metadata-modules/object-metadata/utils/assert-mutation-not-on-remote-object.util';
-import { ObjectMetadataItemWithFieldMaps } from 'src/engine/metadata-modules/types/object-metadata-item-with-field-maps';
-import { ObjectMetadataMaps } from 'src/engine/metadata-modules/types/object-metadata-maps';
-import { WorkspaceRepository } from 'src/engine/twenty-orm/repository/workspace.repository';
+import { type ObjectMetadataItemWithFieldMaps } from 'src/engine/metadata-modules/types/object-metadata-item-with-field-maps';
+import { type ObjectMetadataMaps } from 'src/engine/metadata-modules/types/object-metadata-maps';
+import { type WorkspaceRepository } from 'src/engine/twenty-orm/repository/workspace.repository';
 
+type PartialObjectRecordWithId = Partial<ObjectRecord> & { id: string };
 @Injectable()
 export class GraphqlQueryCreateManyResolverService extends GraphqlQueryBaseResolverService<
   CreateManyResolverArgs,
@@ -115,13 +122,15 @@ export class GraphqlQueryCreateManyResolverService extends GraphqlQueryBaseResol
       objectMetadataItemWithFieldMaps,
     });
 
-    await this.processRecordsToUpdate({
-      partialRecordsToUpdate: recordsToUpdate,
-      repository: executionArgs.repository,
-      objectMetadataItemWithFieldMaps,
-      result,
-      columnsToReturn,
-    });
+    if (recordsToUpdate.length > 0) {
+      await this.processRecordsToUpdate({
+        partialRecordsToUpdate: recordsToUpdate,
+        repository: executionArgs.repository,
+        objectMetadataItemWithFieldMaps,
+        result,
+        columnsToReturn,
+      });
+    }
 
     await this.processRecordsToInsert({
       recordsToInsert,
@@ -180,7 +189,7 @@ export class GraphqlQueryCreateManyResolverService extends GraphqlQueryBaseResol
       fullPath: string;
       column: string;
     }[],
-  ): Promise<Partial<ObjectRecord>[]> {
+  ): Promise<PartialObjectRecordWithId[]> {
     const { objectMetadataItemWithFieldMaps } = executionArgs.options;
     const queryBuilder = executionArgs.repository.createQueryBuilder(
       objectMetadataItemWithFieldMaps.nameSingular,
@@ -195,7 +204,24 @@ export class GraphqlQueryCreateManyResolverService extends GraphqlQueryBaseResol
       queryBuilder.orWhere(condition);
     });
 
-    return await queryBuilder.withDeleted().getMany();
+    const restrictedFields =
+      executionArgs.repository.objectRecordsPermissions?.[
+        objectMetadataItemWithFieldMaps.id
+      ]?.restrictedFields;
+
+    const selectOptions = getAllSelectableFields({
+      restrictedFields: restrictedFields ?? {},
+      objectMetadata: {
+        objectMetadataMapItem: objectMetadataItemWithFieldMaps,
+      },
+    });
+
+    return (await queryBuilder
+      .withDeleted()
+      .setFindOptions({
+        select: selectOptions,
+      })
+      .getMany()) as PartialObjectRecordWithId[];
   }
 
   private getValueFromPath(
@@ -244,16 +270,16 @@ export class GraphqlQueryCreateManyResolverService extends GraphqlQueryBaseResol
       fullPath: string;
       column: string;
     }[],
-    existingRecords: Partial<ObjectRecord>[],
+    existingRecords: PartialObjectRecordWithId[],
   ): {
-    recordsToUpdate: Partial<ObjectRecord>[];
+    recordsToUpdate: PartialObjectRecordWithId[];
     recordsToInsert: Partial<ObjectRecord>[];
   } {
-    const recordsToUpdate: Partial<ObjectRecord>[] = [];
+    const recordsToUpdate: PartialObjectRecordWithId[] = [];
     const recordsToInsert: Partial<ObjectRecord>[] = [];
 
     for (const record of records) {
-      let existingRecord: Partial<ObjectRecord> | null = null;
+      let existingRecord: PartialObjectRecordWithId | null = null;
 
       for (const field of conflictingFields) {
         const requestFieldValue = this.getValueFromPath(record, field.fullPath);
@@ -291,9 +317,9 @@ export class GraphqlQueryCreateManyResolverService extends GraphqlQueryBaseResol
     repository,
     objectMetadataItemWithFieldMaps,
     result,
-    columnsToReturn: _,
+    columnsToReturn,
   }: {
-    partialRecordsToUpdate: Partial<ObjectRecord>[];
+    partialRecordsToUpdate: PartialObjectRecordWithId[];
     repository: WorkspaceRepository<ObjectLiteral>;
     objectMetadataItemWithFieldMaps: ObjectMetadataItemWithFieldMaps;
     result: InsertResult;
@@ -304,15 +330,20 @@ export class GraphqlQueryCreateManyResolverService extends GraphqlQueryBaseResol
         this.getRecordWithoutCreatedBy(record, objectMetadataItemWithFieldMaps),
       );
 
-    const savedRecords = await repository.save(
-      partialRecordsToUpdateWithoutCreatedByUpdate,
+    const savedRecords = await repository.updateMany(
+      partialRecordsToUpdateWithoutCreatedByUpdate.map((record) => ({
+        criteria: record.id,
+        partialEntity: record,
+      })),
+      undefined,
+      columnsToReturn,
     );
 
     result.identifiers.push(
-      ...savedRecords.map((record) => ({ id: record.id })),
+      ...savedRecords.generatedMaps.map((record) => ({ id: record.id })),
     );
     result.generatedMaps.push(
-      ...savedRecords.map((record) => ({ id: record.id })),
+      ...savedRecords.generatedMaps.map((record) => ({ id: record.id })),
     );
   }
 
@@ -418,9 +449,9 @@ export class GraphqlQueryCreateManyResolverService extends GraphqlQueryBaseResol
   }
 
   private getRecordWithoutCreatedBy(
-    record: Partial<ObjectRecord>,
+    record: PartialObjectRecordWithId,
     objectMetadataItemWithFieldMaps: ObjectMetadataItemWithFieldMaps,
-  ) {
+  ): Omit<PartialObjectRecordWithId, 'createdBy'> {
     let recordWithoutCreatedByUpdate = record;
 
     const createdByFieldMetadataId =

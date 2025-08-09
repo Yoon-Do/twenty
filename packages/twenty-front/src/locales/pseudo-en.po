@@ -337,6 +337,13 @@ msgstr ""
 msgid "Active API keys created by you or your team."
 msgstr ""
 
+#. js-lingui-id: KKfos4
+#: src/modules/workflow/workflow-diagram/components/WorkflowDiagramEmptyTriggerReadonly.tsx
+#: src/modules/workflow/workflow-diagram/components/WorkflowDiagramEmptyTriggerReadonly.tsx
+#: src/modules/workflow/workflow-diagram/components/WorkflowDiagramEmptyTriggerEditable.tsx
+msgid "Add a Trigger"
+msgstr ""
+
 #. js-lingui-id: MPPZ54
 #: src/modules/settings/accounts/components/SettingsAccountsConnectedAccountsListCard.tsx
 msgid "Add account"
@@ -377,6 +384,7 @@ msgstr ""
 
 #. js-lingui-id: Hkobke
 #: src/modules/object-record/record-table/record-table-section/components/RecordTableRecordGroupSectionAddNew.tsx
+#: src/modules/object-record/record-table/components/RecordTableAddNew.tsx
 msgid "Add new"
 msgstr ""
 
@@ -660,11 +668,6 @@ msgstr ""
 #: src/utils/get-error-message-from-apollo-error.util.ts
 #: src/modules/ui/feedback/snack-bar-manager/hooks/useSnackBar.ts
 msgid "An error occurred."
-msgstr ""
-
-#. js-lingui-id: mJ6m4C
-#: src/modules/settings/developers/components/SettingsDevelopersWebhookForm.tsx
-msgid "An optional description"
 msgstr ""
 
 #. js-lingui-id: lxentK
@@ -4505,7 +4508,7 @@ msgid "Phone number copied to clipboard"
 msgstr ""
 
 #. js-lingui-id: FdlpPK
-#: src/modules/workflow/workflow-variables/components/WorkflowVariablesDropdownObjectItems.tsx
+#: src/modules/workflow/workflow-variables/components/WorkflowVariablesDropdownAllItems.tsx
 msgid "Pick a {nameSingular} record"
 msgstr ""
 
@@ -4584,6 +4587,11 @@ msgstr ""
 #. js-lingui-id: /v6Rp9
 #: src/pages/onboarding/CreateWorkspace.tsx
 msgid "Prefilling your workspace data..."
+msgstr ""
+
+#. js-lingui-id: koeh2Y
+#: src/modules/settings/data-model/fields/forms/components/SettingsDataModelFieldIsUniqueForm.tsx
+msgid "Prevent from assigining the same value to different records"
 msgstr ""
 
 #. js-lingui-id: rdUucN
@@ -5882,11 +5890,6 @@ msgstr ""
 msgid "Third"
 msgstr ""
 
-#. js-lingui-id: Kb1oAw
-#: src/modules/object-record/spreadsheet-import/utils/spreadsheetImportGetUnicityRowHook.ts
-msgid "This {columnName} value already exists in your import data"
-msgstr ""
-
 #. js-lingui-id: hqCwGc
 #: src/pages/settings/SettingsWorkspaceMembers.tsx
 msgid "This action cannot be undone. This will permanently delete this user and remove them from all their assignments."
@@ -6091,6 +6094,7 @@ msgstr ""
 
 #. js-lingui-id: wSXm5S
 #: src/pages/settings/data-model/SettingsObjectIndexTable.tsx
+#: src/modules/settings/data-model/fields/forms/components/SettingsDataModelFieldIsUniqueForm.tsx
 #: src/modules/object-record/record-board/record-board-column/utils/getAggregateOperationShortLabel.ts
 msgid "Unique"
 msgstr ""
@@ -6367,9 +6371,14 @@ msgstr ""
 msgid "We support your square PNGs, JPEGs and GIFs under 10MB"
 msgstr ""
 
-#. js-lingui-id: ZS7vYp
+#. js-lingui-id: KIfYq0
 #: src/modules/settings/developers/components/SettingsDevelopersWebhookForm.tsx
-msgid "We will send POST requests to this endpoint for every new event"
+msgid "We will send a POST request to this endpoint for each new event in application/json format"
+msgstr ""
+
+#. js-lingui-id: K4HbuR
+#: src/modules/settings/developers/components/SettingsDevelopersWebhookForm.tsx
+msgid "We will send a POST request to this endpoint for each new event in application/json format."
 msgstr ""
 
 #. js-lingui-id: PI4LiB
